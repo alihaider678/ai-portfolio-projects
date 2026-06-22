@@ -1,0 +1,58 @@
+# ── Python ──────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env_backup
+
+# Environment variables (NEVER commit real keys)
+backend/.env
+.env
+.env.local
+.env.*.local
+
+# ── Node.js / Next.js ────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+frontend/dist/
+*.tsbuildinfo
+
+# ── Data & Vector Store ──────────────────────────────────────────────────
+# Chroma persisted data (rebuilt on first run)
+backend/data/chroma_db/
+# Uploaded files (temp)
+backend/data/uploads/
+*.pdf
+*.tmp
+
+# ── Celery ───────────────────────────────────────────────────────────────
+celerybeat-schedule
+celerybeat.pid
+
+# ── OS ───────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ──────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Logs ─────────────────────────────────────────────────────────────────
+*.log
+logs/

@@ -30,10 +30,11 @@ def build_support_graph() -> StateGraph:
 support_graph = build_support_graph()
 
 
-def run_agent(session_id: str, user_message: str) -> dict[str, Any]:
+def run_agent(session_id: str, user_message: str, api_key: str | None = None) -> dict[str, Any]:
     initial_state = {
         "session_id": session_id,
         "user_message": user_message,
+        "api_key": api_key,
         "sentiment": "neutral",
         "negative_count": 0,
         "response": "",

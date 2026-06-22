@@ -70,7 +70,7 @@ def end_session(session_id: str):
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
     try:
-        result = run_agent(session_id=request.session_id, user_message=request.message)
+        result = run_agent(session_id=request.session_id, user_message=request.message, api_key=request.api_key)
         return ChatResponse(
             session_id=request.session_id,
             response=result["response"],
@@ -96,7 +96,7 @@ async def chat_stream(request: ChatRequest):
     """
     async def event_generator():
         try:
-            async for event in stream_agent_response(request.session_id, request.message):
+            async for event in stream_agent_response(request.session_id, request.message, request.api_key):
                 yield f"data: {json.dumps(event)}\n\n"
         except Exception as e:
             yield f"data: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"

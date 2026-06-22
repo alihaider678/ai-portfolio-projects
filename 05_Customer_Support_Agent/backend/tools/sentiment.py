@@ -15,10 +15,10 @@ SENTIMENT_PROMPT = PromptTemplate.from_template(
 )
 
 
-def analyze_sentiment(message: str) -> str:
+def analyze_sentiment(message: str, api_key: str | None = None) -> str:
     llm = ChatOpenAI(
         model=settings.openai_model,
-        api_key=settings.openai_api_key,
+        api_key=api_key or settings.openai_api_key,
         temperature=0,
     )
     chain = SENTIMENT_PROMPT | llm

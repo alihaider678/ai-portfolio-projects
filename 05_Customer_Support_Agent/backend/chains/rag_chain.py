@@ -1,9 +1,9 @@
 from operator import itemgetter
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_chroma import Chroma
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
-from vectorstore.chroma_store import get_vectorstore
 from utils.config import settings
 
 SUPPORT_PROMPT = ChatPromptTemplate.from_messages([
@@ -36,15 +36,23 @@ def format_chat_history(messages) -> str:
     return "\n".join(formatted)
 
 
-def get_rag_chain():
-    vectorstore = get_vectorstore()
+def get_rag_chain(api_key: str | None = None):
+    key = api_key or settings.openai_api_key
+
+    embeddings = OpenAIEmbeddings(model=settings.openai_embedding_model, api_key=key)
+    vectorstore = Chroma(
+        persist_directory=settings.chroma_persist_dir,
+        embedding_function=embeddings,
+    )
     retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+
     llm = ChatOpenAI(
         model=settings.openai_model,
-        api_key=settings.openai_api_key,
+        api_key=key,
         temperature=0.3,
         streaming=True,
     )
+
     chain = (
         {
             "context": itemgetter("question") | retriever | format_docs,

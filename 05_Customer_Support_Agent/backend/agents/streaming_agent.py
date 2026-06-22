@@ -13,9 +13,11 @@ from memory.conversation_memory import (
 from utils.config import settings
 
 
-async def stream_agent_response(session_id: str, user_message: str) -> AsyncGenerator[dict, None]:
+async def stream_agent_response(
+    session_id: str, user_message: str, api_key: str | None = None
+) -> AsyncGenerator[dict, None]:
     # 1. Sentiment analysis (sync LLM call — fast, temperature=0)
-    sentiment = analyze_sentiment(user_message)
+    sentiment = analyze_sentiment(user_message, api_key=api_key)
 
     # 2. Update persistent negative count in Redis
     negative_count = get_negative_count(session_id)
@@ -46,7 +48,7 @@ async def stream_agent_response(session_id: str, user_message: str) -> AsyncGene
     else:
         # 4. Stream RAG chain response token by token
         chat_history = get_chat_history(session_id)
-        chain, _ = get_rag_chain()
+        chain, _ = get_rag_chain(api_key=api_key)
         full_response = ""
 
         async for chunk in chain.astream({"question": user_message, "chat_history": chat_history}):

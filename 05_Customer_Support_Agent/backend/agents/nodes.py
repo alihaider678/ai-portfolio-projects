@@ -16,9 +16,10 @@ from utils.config import settings
 def retrieve_and_respond(state: dict[str, Any]) -> dict[str, Any]:
     session_id = state["session_id"]
     user_message = state["user_message"]
+    api_key = state.get("api_key")
 
     chat_history = get_chat_history(session_id)
-    chain, _ = get_rag_chain()
+    chain, _ = get_rag_chain(api_key=api_key)
     response = chain.invoke({"question": user_message, "chat_history": chat_history})
 
     add_messages(session_id, user_message, response)
@@ -28,7 +29,7 @@ def retrieve_and_respond(state: dict[str, Any]) -> dict[str, Any]:
 
 def sentiment_node(state: dict[str, Any]) -> dict[str, Any]:
     session_id = state["session_id"]
-    sentiment = analyze_sentiment(state["user_message"])
+    sentiment = analyze_sentiment(state["user_message"], api_key=state.get("api_key"))
 
     negative_count = get_negative_count(session_id)
     if sentiment in ("negative", "frustrated"):
