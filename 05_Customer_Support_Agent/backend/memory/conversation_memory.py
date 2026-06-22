@@ -1,31 +1,54 @@
+import json
+import redis as redis_lib
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
+from utils.config import settings
+
+_redis = redis_lib.from_url(settings.redis_url, decode_responses=True)
+
+SESSION_TTL = 86400  # 24 hours
+MAX_MESSAGES = 20    # 10 turns
 
 
-class WindowMemory:
-    def __init__(self, k: int = 10):
-        self._k = k
-        self.messages: list[BaseMessage] = []
-
-    def add_message(self, message: BaseMessage) -> None:
-        self.messages.append(message)
-        max_msgs = self._k * 2
-        if len(self.messages) > max_msgs:
-            self.messages = self.messages[-max_msgs:]
+def _msg_key(session_id: str) -> str:
+    return f"session:{session_id}:messages"
 
 
-_sessions: dict[str, WindowMemory] = {}
+def _neg_key(session_id: str) -> str:
+    return f"session:{session_id}:negative_count"
 
 
-def get_memory(session_id: str) -> WindowMemory:
-    if session_id not in _sessions:
-        _sessions[session_id] = WindowMemory(k=10)
-    return _sessions[session_id]
+def _serialize(msg: BaseMessage) -> dict:
+    return {"type": msg.type, "content": msg.content}
 
 
-def clear_memory(session_id: str) -> None:
-    if session_id in _sessions:
-        del _sessions[session_id]
+def _deserialize(d: dict) -> BaseMessage:
+    return HumanMessage(content=d["content"]) if d["type"] == "human" else AIMessage(content=d["content"])
 
 
 def get_chat_history(session_id: str) -> list[BaseMessage]:
-    return get_memory(session_id).messages
+    raw = _redis.get(_msg_key(session_id))
+    if not raw:
+        return []
+    return [_deserialize(m) for m in json.loads(raw)[-MAX_MESSAGES:]]
+
+
+def add_messages(session_id: str, human: str, ai: str) -> None:
+    history = get_chat_history(session_id)
+    history.extend([HumanMessage(content=human), AIMessage(content=ai)])
+    serialized = [_serialize(m) for m in history[-MAX_MESSAGES:]]
+    _redis.setex(_msg_key(session_id), SESSION_TTL, json.dumps(serialized))
+
+
+def get_negative_count(session_id: str) -> int:
+    raw = _redis.get(_neg_key(session_id))
+    return int(raw) if raw else 0
+
+
+def increment_negative_count(session_id: str) -> int:
+    count = _redis.incr(_neg_key(session_id))
+    _redis.expire(_neg_key(session_id), SESSION_TTL)
+    return count
+
+
+def clear_memory(session_id: str) -> None:
+    _redis.delete(_msg_key(session_id), _neg_key(session_id))

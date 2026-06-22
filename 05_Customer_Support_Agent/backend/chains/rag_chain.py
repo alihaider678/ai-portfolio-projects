@@ -43,6 +43,7 @@ def get_rag_chain():
         model=settings.openai_model,
         api_key=settings.openai_api_key,
         temperature=0.3,
+        streaming=True,
     )
     chain = (
         {

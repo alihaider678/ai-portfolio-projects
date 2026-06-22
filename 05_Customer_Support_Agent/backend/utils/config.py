@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     openai_embedding_model: str = "text-embedding-3-small"
     chroma_persist_dir: str = "./data/chroma_db"
     escalation_threshold: int = 2
+    redis_url: str = "redis://localhost:6379/0"
 
 
 settings = Settings()
