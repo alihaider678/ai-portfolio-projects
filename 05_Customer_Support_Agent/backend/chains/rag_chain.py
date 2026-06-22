@@ -1,6 +1,7 @@
+from operator import itemgetter
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
+from langchain_core.runnables import RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 from vectorstore.chroma_store import get_vectorstore
 from utils.config import settings
@@ -25,6 +26,16 @@ def format_docs(docs) -> str:
     return "\n\n".join(doc.page_content for doc in docs)
 
 
+def format_chat_history(messages) -> str:
+    if not messages:
+        return "No previous conversation."
+    formatted = []
+    for msg in messages:
+        role = "Customer" if msg.type == "human" else "Agent"
+        formatted.append(f"{role}: {msg.content}")
+    return "\n".join(formatted)
+
+
 def get_rag_chain():
     vectorstore = get_vectorstore()
     retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
@@ -35,9 +46,9 @@ def get_rag_chain():
     )
     chain = (
         {
-            "context": retriever | format_docs,
-            "question": RunnablePassthrough(),
-            "chat_history": RunnablePassthrough(),
+            "context": itemgetter("question") | retriever | format_docs,
+            "question": itemgetter("question"),
+            "chat_history": itemgetter("chat_history") | RunnableLambda(format_chat_history),
         }
         | SUPPORT_PROMPT
         | llm

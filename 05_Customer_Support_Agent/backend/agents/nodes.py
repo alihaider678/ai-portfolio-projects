@@ -12,7 +12,7 @@ def retrieve_and_respond(state: dict[str, Any]) -> dict[str, Any]:
     session_id = state["session_id"]
     user_message = state["user_message"]
     memory = get_memory(session_id)
-    chat_history = memory.chat_memory.messages
+    chat_history = memory.messages
 
     chain, _ = get_rag_chain()
     response = chain.invoke({
@@ -20,8 +20,8 @@ def retrieve_and_respond(state: dict[str, Any]) -> dict[str, Any]:
         "chat_history": chat_history,
     })
 
-    memory.chat_memory.add_message(HumanMessage(content=user_message))
-    memory.chat_memory.add_message(AIMessage(content=response))
+    memory.add_message(HumanMessage(content=user_message))
+    memory.add_message(AIMessage(content=response))
 
     return {**state, "response": response}
 
