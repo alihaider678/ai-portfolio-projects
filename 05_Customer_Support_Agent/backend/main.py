@@ -2,6 +2,8 @@ import uuid
 import json
 import os
 import tempfile
+import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -13,10 +15,25 @@ from agents.support_agent import run_agent
 from agents.streaming_agent import stream_agent_response
 from memory.conversation_memory import clear_memory
 
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Seed ChromaDB with demo data on every startup (safe: skips if already populated)
+    try:
+        from data.seed_demo_kb import seed_if_empty
+        seed_if_empty()
+    except Exception as e:
+        logger.warning(f"Startup seed failed (non-fatal): {e}")
+    yield
+
+
 app = FastAPI(
     title="Enterprise Customer Support Agent",
     description="LangGraph + RAG + Redis + Celery — streaming-capable support agent with sentiment detection and escalation",
     version="2.0.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(

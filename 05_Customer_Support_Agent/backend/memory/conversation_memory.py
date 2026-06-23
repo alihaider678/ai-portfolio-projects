@@ -3,7 +3,12 @@ import redis as redis_lib
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 from utils.config import settings
 
-_redis = redis_lib.from_url(settings.redis_url, decode_responses=True)
+_redis = redis_lib.from_url(
+    settings.redis_url,
+    decode_responses=True,
+    socket_connect_timeout=5,
+    socket_timeout=5,
+)
 
 SESSION_TTL = 86400  # 24 hours
 MAX_MESSAGES = 20    # 10 turns
