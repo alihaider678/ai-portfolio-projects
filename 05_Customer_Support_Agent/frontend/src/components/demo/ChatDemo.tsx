@@ -19,7 +19,7 @@ export default function ChatDemo() {
   const [isStreaming, setIsStreaming] = useState(false)
   const [isThinking, setIsThinking] = useState(false)
   const [isInitializing, setIsInitializing] = useState(false)
-  const [serverOnline, setServerOnline] = useState<boolean | null>(null)
+  const [serverStatus, setServerStatus] = useState<'checking' | 'waking' | 'online' | 'offline'>('checking')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = useCallback(() => {
@@ -29,7 +29,18 @@ export default function ChatDemo() {
   useEffect(() => { scrollToBottom() }, [messages, scrollToBottom])
 
   useEffect(() => {
-    checkHealth().then(setServerOnline)
+    let cancelled = false
+    const probe = async () => {
+      const fast = await checkHealth(4000)
+      if (cancelled) return
+      if (fast) { setServerStatus('online'); return }
+      // Render free tier spins down — wake it up with a long-timeout retry
+      setServerStatus('waking')
+      const slow = await checkHealth(65000)
+      if (!cancelled) setServerStatus(slow ? 'online' : 'offline')
+    }
+    probe()
+    return () => { cancelled = true }
   }, [])
 
   const startSession = async () => {
@@ -141,15 +152,20 @@ export default function ChatDemo() {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5 text-xs">
-            {serverOnline === null ? (
-              <Loader2 className="size-3 animate-spin text-muted-foreground" />
-            ) : serverOnline ? (
-              <CheckCircle className="size-3 text-emerald-400" />
-            ) : (
-              <XCircle className="size-3 text-rose-400" />
-            )}
-            <span className={serverOnline ? 'text-emerald-400' : 'text-muted-foreground'}>
-              {serverOnline === null ? 'Checking...' : serverOnline ? 'Backend online' : 'Backend offline'}
+            {serverStatus === 'checking' && <Loader2 className="size-3 animate-spin text-muted-foreground" />}
+            {serverStatus === 'waking'   && <Loader2 className="size-3 animate-spin text-yellow-400" />}
+            {serverStatus === 'online'   && <CheckCircle className="size-3 text-emerald-400" />}
+            {serverStatus === 'offline'  && <XCircle className="size-3 text-rose-400" />}
+            <span className={
+              serverStatus === 'online'  ? 'text-emerald-400' :
+              serverStatus === 'waking'  ? 'text-yellow-400' :
+              serverStatus === 'offline' ? 'text-rose-400' :
+              'text-muted-foreground'
+            }>
+              {serverStatus === 'checking' && 'Checking...'}
+              {serverStatus === 'waking'   && 'Waking up server… (~30s on free tier)'}
+              {serverStatus === 'online'   && 'Backend online'}
+              {serverStatus === 'offline'  && 'Backend offline — try refreshing'}
             </span>
           </div>
 

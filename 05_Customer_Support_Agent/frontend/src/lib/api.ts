@@ -2,9 +2,9 @@ import type { StreamEvent } from './types'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
-export async function checkHealth(): Promise<boolean> {
+export async function checkHealth(timeoutMs = 4000): Promise<boolean> {
   try {
-    const res = await fetch(`${API_URL}/health`, { signal: AbortSignal.timeout(3000) })
+    const res = await fetch(`${API_URL}/health`, { signal: AbortSignal.timeout(timeoutMs) })
     return res.ok
   } catch {
     return false
