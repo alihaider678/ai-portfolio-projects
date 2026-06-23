@@ -67,7 +67,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55 } },
 }
 
 export default function FeaturesSection() {
@@ -111,7 +111,7 @@ export default function FeaturesSection() {
               <motion.div
                 key={f.title}
                 variants={item}
-                whileHover={{ y: -7, transition: { duration: 0.22, ease: 'easeOut' } }}
+                whileHover={{ y: -7, transition: { duration: 0.22 } }}
                 className="group relative rounded-2xl border border-border bg-card p-6 overflow-hidden cursor-default"
                 style={{
                   boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
