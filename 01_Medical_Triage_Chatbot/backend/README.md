@@ -215,6 +215,8 @@ uvicorn main:app --reload --port 8000
 
 Interactive docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
+**Production:** [medical-triage-backend-8q77.onrender.com](https://medical-triage-backend-8q77.onrender.com)
+
 ---
 
 ## Deployment (Render)

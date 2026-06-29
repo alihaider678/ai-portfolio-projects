@@ -4,7 +4,10 @@
 
 **Domain:** Healthcare AI · Clinical Decision Support  
 **Stack:** LangGraph · FastAPI · ChromaDB · Redis · Next.js 16 · React 19  
-**Status:** Complete — ready for deployment
+**Status:** Live  
+
+**Live Demo:** [medical-triage-chatbot.vercel.app](https://medical-triage-chatbot.vercel.app)  
+**Backend API:** [medical-triage-backend-8q77.onrender.com](https://medical-triage-backend-8q77.onrender.com)
 
 ---
 
