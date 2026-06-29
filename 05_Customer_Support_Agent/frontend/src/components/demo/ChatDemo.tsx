@@ -21,9 +21,11 @@ export default function ChatDemo() {
   const [isInitializing, setIsInitializing] = useState(false)
   const [serverStatus, setServerStatus] = useState<'checking' | 'waking' | 'online' | 'offline'>('checking')
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const el = messagesContainerRef.current
+    if (el) el.scrollTop = el.scrollHeight
   }, [])
 
   useEffect(() => { scrollToBottom() }, [messages, scrollToBottom])
@@ -184,7 +186,7 @@ export default function ChatDemo() {
       {/* Chat window */}
       <div className="flex-1 flex flex-col glass rounded-xl border border-border overflow-hidden min-h-[420px]">
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
           <AnimatePresence>
             {messages.length === 0 && !sessionId && (
               <motion.div
