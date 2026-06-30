@@ -1,0 +1,10 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.9.2
+pydantic-settings==2.6.1
+langchain-openai==0.2.14
+langgraph==0.2.50
+redis==5.2.0
+httpx==0.28.0
+reportlab==4.2.5
+python-dotenv==1.0.1
