@@ -2,6 +2,8 @@
 
 > **AI Portfolio Project 02** | Domain: Healthcare / Clinical Decision Support
 
+**Live Demo:** [rxsafe-ai.vercel.app](https://rxsafe-ai.vercel.app) &nbsp;|&nbsp; **API:** [rxsafe-ai-backend.onrender.com](https://rxsafe-ai-backend.onrender.com/docs)
+
 A production-grade drug interaction checker powered by parallel LangGraph agents. It simultaneously queries the US FDA drug label database (OpenFDA) and PubMed research papers, runs an autonomous re-analysis loop when confidence is low, and generates a clinician-grade PDF safety report — all in under 60 seconds.
 
 **BYOK (Bring Your Own Key):** Your OpenAI API key is provided in the UI per request. It is never stored server-side, never written to disk, and never logged.
@@ -169,3 +171,13 @@ RxSafe AI is a portfolio demonstration tool that uses real FDA and PubMed data. 
 ---
 
 *Part of the [AI Portfolio Projects](https://github.com/alihaider678/ai-portfolio-projects) — 11-project showcase of production-grade AI engineering.*
+
+---
+
+## Deployment
+
+| Service | Platform | URL |
+| --- | --- | --- |
+| Frontend | Vercel | [rxsafe-ai.vercel.app](https://rxsafe-ai.vercel.app) |
+| Backend API | Render | [rxsafe-ai-backend.onrender.com](https://rxsafe-ai-backend.onrender.com) |
+| API Docs | Render | [rxsafe-ai-backend.onrender.com/docs](https://rxsafe-ai-backend.onrender.com/docs) |
