@@ -1,0 +1,35 @@
+# API
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.12
+
+# AI / LLM
+openai==1.54.4
+langchain==0.3.7
+langchain-openai==0.2.8
+langchain-community==0.3.7
+
+# Vector store
+chromadb==0.5.18
+
+# PDF parsing
+PyMuPDF==1.24.13
+Pillow==11.0.0
+
+# TTS
+elevenlabs==1.9.0
+
+# PDF generation (sample docs)
+reportlab==4.2.5
+matplotlib==3.9.2
+
+# Redis
+redis==5.2.0
+
+# Utilities
+pydantic==2.9.2
+pydantic-settings==2.6.1
+python-dotenv==1.0.1
+structlog==24.4.0
+httpx==0.27.2
+aiofiles==24.1.0
