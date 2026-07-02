@@ -4,9 +4,10 @@
 
 **AI Portfolio Project 11** — a production-style, multimodal AI system combining vision, speech, retrieval-augmented generation, and a microservices integration.
 
-<!-- Add live links after deployment -->
-🔗 **Live Demo:** _coming soon (Vercel)_
-🔗 **API:** _coming soon (Render)_ · `/docs` for Swagger
+🔗 **Live Demo:** https://medai-nexus.vercel.app
+🔗 **API:** https://medai-nexus-backend.onrender.com · [Swagger docs](https://medai-nexus-backend.onrender.com/docs)
+
+> ⏳ The backend runs on Render's free tier and sleeps after 15 min of inactivity — the **first request may take ~50s** to wake it, then it's fast.
 
 ---
 
