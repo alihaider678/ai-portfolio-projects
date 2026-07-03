@@ -4,4 +4,9 @@
 fastapi>=0.139.0
 uvicorn[standard]>=0.32.1
 starlette>=0.49.1
-# (rapidfuzz, jellyfish come from the shared engine in mcp_server/)
+# Screening engine deps (shared with mcp_server/) — listed here too so the
+# backend deploys standalone without relying on a cross-directory -r path.
+rapidfuzz>=3.9.0
+jellyfish>=1.1.0
+# Needed by ingest.py, which runs at build time to download the datasets.
+httpx>=0.27.0
