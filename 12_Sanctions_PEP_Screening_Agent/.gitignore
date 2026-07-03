@@ -40,3 +40,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Personal local run notes (kept off GitHub)
+RUN_LOCALLY.txt
