@@ -2,7 +2,7 @@
 
 import { ShieldCheck } from "lucide-react";
 
-const STACK = ["Hermes Agent", "MCP", "FastAPI", "Next.js", "RapidFuzz", "Qdrant", "OFAC", "OpenSanctions"];
+const STACK = ["Hermes Agent", "MCP", "FastAPI", "Next.js", "RapidFuzz", "Docker", "OFAC", "OpenSanctions"];
 
 export default function Footer() {
   return (
