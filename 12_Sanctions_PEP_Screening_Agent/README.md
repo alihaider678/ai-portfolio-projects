@@ -4,6 +4,20 @@
 
 **Portfolio Project 12** · Trade-compliance / RegTech domain — sanctions screening, PEP due-diligence, and sanctions-circumvention checks.
 
+> **New here?** Read **[❓ What is this?](#-what-is-this-in-plain-english)** for the problem it solves → then **[🎥 watch the 1-min demo](#-see-it-in-action-1-minute-demo)** → then **[🌐 try the live app](#-live-demo)**.
+
+---
+
+## ❓ What is this? (in plain English)
+
+**The problem.** Before a company can trade internationally, it must check that its customers, suppliers, and shipment parties are **not on a sanctions list** and are not high-risk **Politically Exposed Persons (PEPs)**. This is hard because the same sanctioned entity shows up under **dozens of spellings, transliterations, and aliases** — *"Rosoboronexport"* vs *"ROSOBORONEKSPORT OAO"*, or *"Muhammad" / "Mohammed" / "Mohamad."* A plain exact-match check misses them; a naïve fuzzy check drowns you in false positives on generic words like *"Shipping"* or *"Trading."*
+
+**What AegisScreen does.** It screens any name against **real government data** (OFAC sanctions + OpenSanctions PEP data) using a tuned **two-stage fuzzy + phonetic** matching engine, returns a **risk level** (LOW → CRITICAL) with a **confidence score**, and **explains the match**. It's exposed two ways: as an **AI-agent tool** (MCP) and as a **web API + dashboard**.
+
+**What is MCP?** The **Model Context Protocol** is an open standard — think of it as a *"USB port for AI agents."* You build a tool server once, and *any* MCP-compatible AI agent can automatically **discover** and **call** its tools. Here, the screening engine is wrapped as an MCP server, so an agent can use it without any custom glue code.
+
+**What is the Hermes Agent?** [Hermes Agent](https://nousresearch.com) (by Nous Research) is a self-hosted autonomous AI agent that runs in Docker. It's **MCP-native** — you register a tool server and it decides, on its own, when to call which tool to satisfy a request. In this project, Hermes is the "brain" that reads a plain-English screening request and drives the MCP tools.
+
 ---
 
 ## 🎥 See it in action (1-minute demo)
@@ -24,18 +38,6 @@
 The live site is the **web-dashboard** front door (see architecture below). Type a company or person's name and get an instant risk verdict with the matching records, scores, and an explanation of *why* it matched.
 
 > ⚠️ The backend runs on a free tier that sleeps after ~15 min idle, so the **first** screening after a nap may take ~30–50 s to wake up. After that it's fast.
-
----
-
-## ❓ What is this? (in plain English)
-
-**The problem.** Before a company can trade internationally, it must check that its customers, suppliers, and shipment parties are **not on a sanctions list** and are not high-risk **Politically Exposed Persons (PEPs)**. This is hard because the same sanctioned entity shows up under **dozens of spellings, transliterations, and aliases** — *"Rosoboronexport"* vs *"ROSOBORONEKSPORT OAO"*, or *"Muhammad" / "Mohammed" / "Mohamad."* A plain exact-match check misses them; a naïve fuzzy check drowns you in false positives on generic words like *"Shipping"* or *"Trading."*
-
-**What AegisScreen does.** It screens any name against **real government data** (OFAC sanctions + OpenSanctions PEP data) using a tuned **two-stage fuzzy + phonetic** matching engine, returns a **risk level** (LOW → CRITICAL) with a **confidence score**, and **explains the match**. It's exposed two ways: as an **AI-agent tool** (MCP) and as a **web API + dashboard**.
-
-**What is MCP?** The **Model Context Protocol** is an open standard — think of it as a *"USB port for AI agents."* You build a tool server once, and *any* MCP-compatible AI agent can automatically **discover** and **call** its tools. Here, the screening engine is wrapped as an MCP server, so an agent can use it without any custom glue code.
-
-**What is the Hermes Agent?** [Hermes Agent](https://nousresearch.com) (by Nous Research) is a self-hosted autonomous AI agent that runs in Docker. It's **MCP-native** — you register a tool server and it decides, on its own, when to call which tool to satisfy a request. In this project, Hermes is the "brain" that reads a plain-English screening request and drives the MCP tools.
 
 ---
 
