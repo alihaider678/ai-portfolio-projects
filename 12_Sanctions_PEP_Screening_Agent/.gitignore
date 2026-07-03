@@ -17,9 +17,12 @@ env/
 *.env
 !.env.example
 
-# Downloaded / generated datasets (rebuilt via ingest.py — too large to commit)
-mcp_server/data/
+# Downloaded / generated datasets.
+# We DO commit the normalized dataset (~11 MB) so deploys don't have to re-download
+# it via ingest.py; the large raw CSVs stay ignored.
+mcp_server/data/*
 !mcp_server/data/.gitkeep
+!mcp_server/data/normalized.jsonl
 
 # Qdrant local storage
 **/qdrant_storage/
