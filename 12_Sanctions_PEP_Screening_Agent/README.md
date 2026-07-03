@@ -16,11 +16,14 @@
 
 ---
 
-## 🌐 Live web app
+## 🌐 Live demo
 
-> **Try the screening dashboard:** _🚧 live link coming after deployment (Render + Vercel)._
+- **🖥️ Web dashboard:** **[aegisscreen.vercel.app](https://aegisscreen.vercel.app)**
+- **⚙️ Backend API:** [aegisscreen-backend.onrender.com/api/health](https://aegisscreen-backend.onrender.com/api/health)
 
 The live site is the **web-dashboard** front door (see architecture below). Type a company or person's name and get an instant risk verdict with the matching records, scores, and an explanation of *why* it matched.
+
+> ⚠️ The backend runs on a free tier that sleeps after ~15 min idle, so the **first** screening after a nap may take ~30–50 s to wake up. After that it's fast.
 
 ---
 
@@ -133,7 +136,7 @@ cd frontend && npm install && npm run dev      # http://localhost:3000
 
 ## 🗺️ Roadmap / what's next
 
-- [ ] Deploy the web dashboard live (Render + Vercel) and add the link above.
+- [x] Deploy the web dashboard live (Render + Vercel).
 - [ ] Add episodic agent memory (vector DB) so Hermes remembers past screenings.
 - [ ] Add an eval harness + observability tracing (LangSmith / W&B).
 - [ ] Sibling projects: **HS/Commodity-Code Classifier** (RAG + MCP) and **Export-License Determination** (Hermes).
