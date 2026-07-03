@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-mono);
+}
+
+/* ── DARK (default) ─────────────────────────────────────────── */
+:root, .dark {
+  --bg: #0a0f1e;
+  --surface: #111a2e;
+  --surface-2: #16213a;
+  --card: #0f1830;
+  --border: rgba(99, 102, 241, 0.16);
+  --border-strong: rgba(148, 163, 184, 0.22);
+
+  --text-strong: #f8fafc;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+
+  --accent: #6366f1;         /* indigo */
+  --accent-2: #3b82f6;       /* blue   */
+  --accent-soft: rgba(99, 102, 241, 0.12);
+  --input-bg: #0c1526;
+  --grid: rgba(99, 102, 241, 0.05);
+}
+
+/* ── LIGHT ──────────────────────────────────────────────────── */
+.light {
+  --bg: #f6f8fc;
+  --surface: #ffffff;
+  --surface-2: #eef2fb;
+  --card: #ffffff;
+  --border: rgba(79, 70, 229, 0.16);
+  --border-strong: rgba(71, 85, 105, 0.2);
+
+  --text-strong: #0f172a;
+  --text: #1e293b;
+  --text-muted: #475569;
+  --text-faint: #64748b;
+
+  --accent: #4f46e5;
+  --accent-2: #2563eb;
+  --accent-soft: rgba(79, 70, 229, 0.08);
+  --input-bg: #ffffff;
+  --grid: rgba(79, 70, 229, 0.05);
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  a, button, input, select, textarea, .card, [role="button"] {
+    transition: background-color .2s ease, border-color .2s ease, color .15s ease, box-shadow .2s ease;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+}
+
+/* Surfaces */
+.card { background: var(--card); border: 1px solid var(--border); }
+.surface { background: var(--surface); }
+
+/* Grid backdrop */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+/* Gradient text */
+.grad-text {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Risk palette — consistent in both themes */
+.risk-CRITICAL { color:#f87171; background:rgba(239,68,68,.12);  border-color:rgba(239,68,68,.45); }
+.risk-HIGH     { color:#fb923c; background:rgba(249,115,22,.12); border-color:rgba(249,115,22,.45); }
+.risk-MEDIUM   { color:#fbbf24; background:rgba(245,158,11,.12); border-color:rgba(245,158,11,.45); }
+.risk-LOW      { color:#34d399; background:rgba(16,185,129,.12); border-color:rgba(16,185,129,.4); }
+
+.dot-CRITICAL { background:#ef4444; } .dot-HIGH { background:#f97316; }
+.dot-MEDIUM   { background:#f59e0b; } .dot-LOW  { background:#10b981; }
+
+/* Score bar fill */
+.bar-track { background: var(--surface-2); }
+
+/* Inputs */
+.field {
+  background: var(--input-bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+.field::placeholder { color: var(--text-faint); }
+.field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.pulse { animation: blink 2s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .8s linear infinite; }

@@ -1,0 +1,24 @@
+# Hermes Agent configuration for AegisScreen (reference)
+# ------------------------------------------------------------------
+# This mirrors the relevant parts of the real ~/.hermes/config.yaml that the
+# Hermes container reads (mounted at /opt/data). You normally DON'T hand-edit
+# this — `hermes setup`, `hermes config set`, and `hermes mcp add` write it for
+# you (see README.md). It's kept here to document the working configuration.
+#
+# Secrets (the Nous OAuth token) do NOT go here — they live in ~/.hermes/auth.json,
+# created by the free `hermes setup` Nous Portal login.
+
+model:
+  # The one free Nous-Portal model (no credits needed). For higher quality, add
+  # credit and use e.g. anthropic/claude-sonnet-5.
+  default: "stepfun/step-3.7-flash:free"
+  provider: auto            # routes to the active provider (Nous Portal)
+
+# Our custom MCP screening server, registered via:
+#   hermes mcp add aegisscreen --url http://host.docker.internal:8020/mcp
+# It runs on the HOST in HTTP mode (python server.py --http --port 8020).
+# From inside the container, the host is reached via host.docker.internal.
+mcp_servers:
+  aegisscreen:
+    url: "http://host.docker.internal:8020/mcp"
+    timeout: 180

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets
+.env
+*.env
+!.env.example
+
+# Downloaded / generated datasets (rebuilt via ingest.py — too large to commit)
+mcp_server/data/
+!mcp_server/data/.gitkeep
+
+# Qdrant local storage
+**/qdrant_storage/
+
+# Node
+node_modules/
+.next/
+.env.local
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
