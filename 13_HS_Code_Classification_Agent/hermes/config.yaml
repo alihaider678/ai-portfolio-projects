@@ -1,0 +1,21 @@
+# Hermes Agent configuration for TariffLens (reference)
+# ------------------------------------------------------------------
+# This mirrors the relevant parts of the real ~/.hermes/config.yaml. You don't
+# hand-edit this — `hermes setup` and `hermes mcp add` write it for you (see
+# README.md). It's kept here to document the working configuration.
+#
+# The Nous OAuth token lives in ~/.hermes/auth.json (free login). The TariffLens
+# MCP server itself needs OPENAI_API_KEY (for embeddings + the LLM reranker) —
+# that comes from the project .env when you start the server, NOT from here.
+
+model:
+  default: "stepfun/step-3.7-flash:free"   # free Nous-Portal model (no credits)
+  provider: auto
+
+# The TariffLens MCP server, registered via:
+#   hermes mcp add tarifflens --url http://host.docker.internal:8021/mcp
+# It runs on the HOST in HTTP mode (python server.py --http --port 8021).
+mcp_servers:
+  tarifflens:
+    url: "http://host.docker.internal:8021/mcp"
+    timeout: 180
