@@ -24,7 +24,11 @@
 
 ## 🎥 See it in action
 
-> _🚧 Demo recording coming — Hermes Agent classifying a product via the MCP tools._
+[![Watch the demo — Hermes Agent calling the TariffLens MCP tools](assets/demo-thumbnail.png)](https://github.com/alihaider678/ai-portfolio-projects/blob/main/13_HS_Code_Classification_Agent/assets/hermes-mcp-demo.mp4)
+
+**▶️ Click the image above to play the demo.** The **Hermes Agent** (in Docker) is asked in plain English to classify products and look up duties. It **autonomously discovers and chains the MCP tools** — e.g. `classify_product` *then* `get_duty_rate` — and returns reasoned answers: leather hiking boots → **6403.51**, an EV lithium-ion battery → **8507.60.00** (3.4%), a men's cotton t-shirt → **6109.10.00** (16.5%).
+
+*(The video file also lives in [`assets/hermes-mcp-demo.mp4`](assets/hermes-mcp-demo.mp4).)*
 
 ---
 
