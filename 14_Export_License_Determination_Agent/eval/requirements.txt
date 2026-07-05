@@ -1,0 +1,6 @@
+# LicenseGuard eval harness.
+# Engine mode (default) needs only the engine deps; --graph mode also needs the agent deps.
+openai>=1.40.0
+# For `python run_eval.py --graph`:
+langgraph>=0.2.60
+langchain-core>=0.3.30

@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+/* ── DARK (default) — "control room" violet on near-black ─────── */
+:root, .dark {
+  --bg: #0a0912;
+  --bg-2: #0e0c18;
+  --surface: #151327;
+  --surface-2: #1c1935;
+  --card: rgba(28, 24, 52, 0.55);
+  --card-solid: #171430;
+  --border: rgba(139, 92, 246, 0.18);
+  --border-strong: rgba(168, 145, 250, 0.28);
+
+  --text-strong: #f6f4ff;
+  --text: #ddd8f0;
+  --text-muted: #9c95c4;
+  --text-faint: #6d668f;
+
+  --accent: #8b5cf6;      /* violet  */
+  --accent-2: #d946ef;    /* fuchsia */
+  --accent-soft: rgba(139, 92, 246, 0.14);
+  --input-bg: #100e1f;
+  --glow: rgba(139, 92, 246, 0.35);
+  --grid: rgba(139, 92, 246, 0.055);
+
+  --ok: #34d399; --ok-soft: rgba(16,185,129,.13); --ok-bd: rgba(16,185,129,.42);
+  --warn: #fbbf24; --warn-soft: rgba(245,158,11,.13); --warn-bd: rgba(245,158,11,.45);
+  --stop: #fb7185; --stop-soft: rgba(244,63,94,.13); --stop-bd: rgba(244,63,94,.45);
+}
+
+/* ── LIGHT ────────────────────────────────────────────────────── */
+.light {
+  --bg: #f7f6fc;
+  --bg-2: #f1eefb;
+  --surface: #ffffff;
+  --surface-2: #f3f0fc;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-solid: #ffffff;
+  --border: rgba(124, 58, 237, 0.16);
+  --border-strong: rgba(124, 58, 237, 0.24);
+
+  --text-strong: #17102e;
+  --text: #2c2547;
+  --text-muted: #5f5680;
+  --text-faint: #8b83a6;
+
+  --accent: #7c3aed;
+  --accent-2: #c026d3;
+  --accent-soft: rgba(124, 58, 237, 0.08);
+  --input-bg: #ffffff;
+  --glow: rgba(124, 58, 237, 0.22);
+  --grid: rgba(124, 58, 237, 0.05);
+
+  --ok: #059669; --ok-soft: rgba(5,150,105,.10); --ok-bd: rgba(5,150,105,.35);
+  --warn: #d97706; --warn-soft: rgba(217,119,6,.10); --warn-bd: rgba(217,119,6,.4);
+  --stop: #e11d48; --stop-soft: rgba(225,29,72,.09); --stop-bd: rgba(225,29,72,.38);
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  a, button, input, select, textarea, .card, [role="button"] {
+    transition: background-color .2s ease, border-color .2s ease, color .15s ease,
+      box-shadow .25s ease, transform .15s ease;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  html { scroll-behavior: smooth; }
+  h1, h2, h3, .display { font-family: var(--font-display), var(--font-inter), sans-serif; letter-spacing: -0.02em; }
+}
+
+/* Surfaces */
+.card { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(12px); }
+.card-solid { background: var(--card-solid); border: 1px solid var(--border); }
+.surface { background: var(--surface); }
+.hairline { border-color: var(--border); }
+
+/* Ambient mesh background */
+.mesh { position: relative; }
+.mesh::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(40rem 30rem at 12% -8%, var(--accent-soft), transparent 60%),
+    radial-gradient(34rem 28rem at 92% 4%, rgba(217,70,239,0.10), transparent 62%);
+}
+
+/* Fine grid */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* Gradient text + accents */
+.grad-text {
+  background: linear-gradient(110deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.grad-bg { background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+.glow { box-shadow: 0 0 0 1px var(--border-strong), 0 12px 40px -12px var(--glow); }
+
+/* Outcome semantics (traffic-light) */
+.out-clear      { color: var(--ok);   background: var(--ok-soft);   border-color: var(--ok-bd); }
+.out-required   { color: var(--warn); background: var(--warn-soft); border-color: var(--warn-bd); }
+.out-prohibited { color: var(--stop); background: var(--stop-soft); border-color: var(--stop-bd); }
+.dot-clear { background: var(--ok); } .dot-required { background: var(--warn); } .dot-prohibited { background: var(--stop); }
+
+/* Restriction-level pills */
+.lvl-unrestricted { color: var(--ok);   background: var(--ok-soft);   border-color: var(--ok-bd); }
+.lvl-partial      { color: var(--warn); background: var(--warn-soft); border-color: var(--warn-bd); }
+.lvl-embargoed    { color: var(--stop); background: var(--stop-soft); border-color: var(--stop-bd); }
+
+/* Control-level pills (product side) */
+.ctl-uncontrolled { color: var(--ok);   background: var(--ok-soft);   border-color: var(--ok-bd); }
+.ctl-dual-use     { color: var(--warn); background: var(--warn-soft); border-color: var(--warn-bd); }
+.ctl-controlled   { color: var(--stop); background: var(--stop-soft); border-color: var(--stop-bd); }
+
+/* Inputs */
+.field {
+  background: var(--input-bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+.field::placeholder { color: var(--text-faint); }
+.field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.chip {
+  background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+}
+.chip:hover { border-color: var(--accent); color: var(--text-strong); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; }
+
+/* Animations */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+.pulse { animation: blink 2.2s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .8s linear infinite; }
+@keyframes flowdash { to { stroke-dashoffset: -16; } }
+.flowline { stroke-dasharray: 5 5; animation: flowdash 1s linear infinite; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .4s ease both; }

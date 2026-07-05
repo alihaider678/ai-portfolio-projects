@@ -1,0 +1,180 @@
+{
+  "_source": "Simplified subset of the US Commerce Control List (CCL), 15 CFR Part 774 Supplement No. 1, organized by its 10 categories (0-9). Curated (~18 representative entries) for a portfolio demonstration — NOT the exhaustive list and NOT legal advice. Each entry maps a plain-English product space to a control classification.",
+  "_control_levels": {
+    "controlled": "Fully / tightly controlled — a license is required to nearly all destinations (product-driven).",
+    "dual-use": "Dual-use — controlled for many destinations; license need depends heavily on destination and end-use.",
+    "uncontrolled": "Not on the control list (EAR99-style) — generally no license required on product grounds alone."
+  },
+  "categories": [
+    {
+      "id": "5D002-encryption",
+      "name": "Encryption / information-security software",
+      "ccl_category": "5 Part 2 — Information Security",
+      "ccl_reference": "5D002 / 5A002",
+      "control_level": "controlled",
+      "keywords": ["encryption", "cryptography", "cryptographic", "vpn", "cipher", "tls", "ssl", "secure messaging", "end-to-end encryption", "key management", "hsm", "information security software"],
+      "examples": ["end-to-end encrypted messaging app", "VPN software", "disk-encryption product", "cryptographic library / SDK"],
+      "reason": "Information-security items using strong cryptography are controlled for national-security and anti-terrorism reasons and are restricted to most destinations by default (though license exceptions like ENC exist)."
+    },
+    {
+      "id": "5A002-crypto-hardware",
+      "name": "Cryptographic hardware / secure comms equipment",
+      "ccl_category": "5 Part 2 — Information Security",
+      "ccl_reference": "5A002",
+      "control_level": "controlled",
+      "keywords": ["encryption chip", "cryptographic hardware", "hardware security module", "secure radio", "crypto module", "secure phone"],
+      "examples": ["hardware security module (HSM)", "encrypting radio", "secure telephone"],
+      "reason": "Cryptographic hardware is controlled for national-security/anti-terrorism reasons across most destinations."
+    },
+    {
+      "id": "5A001-telecom-intercept",
+      "name": "Telecommunications interception / monitoring equipment",
+      "ccl_category": "5 Part 1 — Telecommunications",
+      "ccl_reference": "5A001.f / .j",
+      "control_level": "controlled",
+      "keywords": ["lawful intercept", "interception", "imsi catcher", "network monitoring", "deep packet inspection", "surveillance", "wiretap", "signals interception"],
+      "examples": ["IMSI catcher", "lawful-intercept platform", "mass network-monitoring system"],
+      "reason": "Interception and surveillance gear is tightly controlled for national-security and human-rights (crime-control) reasons."
+    },
+    {
+      "id": "4A003-hpc",
+      "name": "High-performance computers",
+      "ccl_category": "4 — Computers",
+      "ccl_reference": "4A003",
+      "control_level": "dual-use",
+      "keywords": ["supercomputer", "high performance computing", "hpc", "compute cluster", "server cluster", "teraflops", "petaflops"],
+      "examples": ["supercomputing cluster", "high-density compute server exceeding performance thresholds"],
+      "reason": "Computers above certain performance thresholds are dual-use (potential weapons-design / cryptanalysis use); license need is destination-dependent."
+    },
+    {
+      "id": "3A090-advanced-chips",
+      "name": "Advanced computing chips / AI accelerators",
+      "ccl_category": "3 — Electronics",
+      "ccl_reference": "3A090 / 4A090",
+      "control_level": "controlled",
+      "keywords": ["ai accelerator", "gpu", "graphics processing unit", "tensor", "advanced semiconductor", "training chip", "neural processor", "npu", "high-end datacenter gpu"],
+      "examples": ["datacenter AI training GPU", "high-end AI accelerator card"],
+      "reason": "Advanced computing ICs and AI accelerators above set thresholds are controlled (advanced-node semiconductor / AI controls), with strict destination-based licensing."
+    },
+    {
+      "id": "3B001-semiconductor-mfg",
+      "name": "Semiconductor manufacturing equipment",
+      "ccl_category": "3 — Electronics",
+      "ccl_reference": "3B001 / 3B002",
+      "control_level": "controlled",
+      "keywords": ["lithography", "euv", "wafer fabrication", "semiconductor manufacturing", "etching equipment", "deposition equipment", "chip fab tool"],
+      "examples": ["EUV lithography scanner", "advanced etch/deposition tool for chip fabs"],
+      "reason": "Equipment for producing advanced semiconductors is tightly controlled for national-security reasons."
+    },
+    {
+      "id": "0-nuclear",
+      "name": "Nuclear materials, facilities & equipment",
+      "ccl_category": "0 — Nuclear Materials, Facilities & Equipment",
+      "ccl_reference": "0A / 0B / 0E series",
+      "control_level": "controlled",
+      "keywords": ["nuclear", "uranium", "plutonium", "centrifuge", "isotope separation", "reactor", "fissile", "enrichment", "heavy water"],
+      "examples": ["gas centrifuge", "nuclear reactor component", "isotope-separation equipment"],
+      "reason": "Nuclear-related items are among the most tightly controlled goods (non-proliferation), requiring a license to nearly all destinations."
+    },
+    {
+      "id": "1C-chemicals",
+      "name": "Controlled chemicals / precursors",
+      "ccl_category": "1 — Materials, Chemicals, Microorganisms & Toxins",
+      "ccl_reference": "1C350 / 1C351",
+      "control_level": "controlled",
+      "keywords": ["chemical precursor", "cwc chemical", "toxin", "nerve agent precursor", "controlled chemical", "pathogen", "biological agent"],
+      "examples": ["chemical-weapon precursor chemical", "listed toxin or pathogen"],
+      "reason": "Chemical/biological precursors and agents are controlled for chemical- and biological-weapons non-proliferation reasons."
+    },
+    {
+      "id": "6A003-cameras",
+      "name": "High-speed / specialized imaging cameras",
+      "ccl_category": "6 — Sensors & Lasers",
+      "ccl_reference": "6A003",
+      "control_level": "dual-use",
+      "keywords": ["high speed camera", "imaging sensor", "focal plane array", "specialized camera", "radiation-hardened camera"],
+      "examples": ["high-speed instrumentation camera above frame-rate thresholds"],
+      "reason": "Certain high-performance imaging sensors are dual-use; license need depends on destination and specifications."
+    },
+    {
+      "id": "6A005-lasers",
+      "name": "High-power / specialized lasers",
+      "ccl_category": "6 — Sensors & Lasers",
+      "ccl_reference": "6A005",
+      "control_level": "dual-use",
+      "keywords": ["high power laser", "industrial laser", "fiber laser", "pulsed laser", "directed energy"],
+      "examples": ["high-power industrial fiber laser above control thresholds"],
+      "reason": "Lasers above set power/energy thresholds are dual-use (potential directed-energy / weapons applications)."
+    },
+    {
+      "id": "6A008-radar",
+      "name": "Radar systems",
+      "ccl_category": "6 — Sensors & Lasers",
+      "ccl_reference": "6A008",
+      "control_level": "dual-use",
+      "keywords": ["radar", "phased array", "over the horizon radar", "surveillance radar", "tracking radar"],
+      "examples": ["ground surveillance radar", "phased-array radar system"],
+      "reason": "Radar systems are dual-use (surveillance and military targeting applications)."
+    },
+    {
+      "id": "7A-navigation",
+      "name": "Inertial navigation / avionics",
+      "ccl_category": "7 — Navigation & Avionics",
+      "ccl_reference": "7A003 / 7A103",
+      "control_level": "dual-use",
+      "keywords": ["inertial navigation", "ins", "imu", "gyroscope", "accelerometer", "avionics", "flight control", "gnss guidance"],
+      "examples": ["inertial measurement unit (IMU)", "high-grade navigation system"],
+      "reason": "Precision navigation equipment is dual-use (missile/UAV guidance applications), controlled by destination and grade."
+    },
+    {
+      "id": "9A012-uav",
+      "name": "Unmanned aerial vehicles (drones) & systems",
+      "ccl_category": "9 — Aerospace & Propulsion",
+      "ccl_reference": "9A012",
+      "control_level": "dual-use",
+      "keywords": ["drone", "uav", "unmanned aerial vehicle", "quadcopter", "unmanned aircraft", "long-endurance drone"],
+      "examples": ["long-endurance fixed-wing UAV", "UAV with extended range/payload"],
+      "reason": "UAVs above capability thresholds are dual-use (potential military / delivery-system use); consumer toys are typically not controlled."
+    },
+    {
+      "id": "9A-aerospace-propulsion",
+      "name": "Aerospace propulsion / gas turbine technology",
+      "ccl_category": "9 — Aerospace & Propulsion",
+      "ccl_reference": "9A / 9E series",
+      "control_level": "controlled",
+      "keywords": ["jet engine", "gas turbine", "rocket engine", "propulsion", "turbine blade", "combustion chamber", "aerospace engine"],
+      "examples": ["aircraft gas-turbine engine", "rocket propulsion component"],
+      "reason": "Propulsion technology is tightly controlled (missile-technology and military-aircraft concerns)."
+    },
+    {
+      "id": "2B-machine-tools",
+      "name": "Numerically controlled machine tools",
+      "ccl_category": "2 — Materials Processing",
+      "ccl_reference": "2B001",
+      "control_level": "dual-use",
+      "keywords": ["cnc machine", "machine tool", "5-axis", "multi-axis milling", "precision lathe", "numerically controlled"],
+      "examples": ["5-axis CNC milling machine above precision thresholds"],
+      "reason": "High-precision multi-axis machine tools are dual-use (can manufacture weapons/aerospace parts)."
+    },
+    {
+      "id": "6A002-night-vision",
+      "name": "Night-vision / thermal imaging",
+      "ccl_category": "6 — Sensors & Lasers",
+      "ccl_reference": "6A002 / 6A003",
+      "control_level": "dual-use",
+      "keywords": ["night vision", "thermal imaging", "infrared camera", "thermal weapon sight", "image intensifier"],
+      "examples": ["thermal imaging camera", "night-vision goggles / image intensifier tube"],
+      "reason": "Night-vision and thermal imaging are dual-use (military targeting/surveillance); controlled to many destinations."
+    },
+    {
+      "id": "1C-advanced-materials",
+      "name": "Advanced materials (composites, alloys)",
+      "ccl_category": "1 — Materials, Chemicals, Microorganisms & Toxins",
+      "ccl_reference": "1C010 / 1C007",
+      "control_level": "dual-use",
+      "keywords": ["carbon fiber", "composite material", "titanium alloy", "maraging steel", "high-strength composite", "aramid fiber"],
+      "examples": ["aerospace-grade carbon-fiber prepreg", "maraging steel"],
+      "reason": "High-performance materials are dual-use (aerospace/missile structures); controlled by specification and destination."
+    }
+  ]
+}

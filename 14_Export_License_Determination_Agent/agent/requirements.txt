@@ -1,0 +1,6 @@
+# LicenseGuard — LangGraph agent
+langgraph>=0.2.60        # graph orchestration (nodes, conditional edges)
+langchain-core>=0.3.30   # Runnable base (LangGraph) + LangSmith tracing hooks
+langsmith>=0.1.140       # observability / tracing to smith.langchain.com
+mcp>=1.2.0               # MCP client (stdio) — LangGraph calls the MCP tools
+openai>=1.40.0           # parse + product-classification nodes

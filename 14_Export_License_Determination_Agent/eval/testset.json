@@ -1,0 +1,29 @@
+{
+  "_about": "Labeled evaluation set for LicenseGuard. Each case asserts the expected license OUTCOME (and, where it matters, the driver) for a product-destination pair. Covers every cell of the decision matrix plus classification edge cases. Used by run_eval.py to report accuracy.",
+  "cases": [
+    { "product": "men's cotton t-shirt", "country": "Germany", "expected_outcome": "NOT_REQUIRED", "expected_driver": "none" },
+    { "product": "fresh apples", "country": "Japan", "expected_outcome": "NOT_REQUIRED", "expected_driver": "none" },
+    { "product": "office chair", "country": "Canada", "expected_outcome": "NOT_REQUIRED", "expected_driver": "none" },
+    { "product": "children's plastic toy", "country": "Australia", "expected_outcome": "NOT_REQUIRED", "expected_driver": "none" },
+
+    { "product": "ordinary laptop computer", "country": "Russia", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "country" },
+    { "product": "cotton bed sheets", "country": "Belarus", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "country" },
+    { "product": "standard office printer", "country": "Venezuela", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "country" },
+
+    { "product": "end-to-end encryption software", "country": "France", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "product" },
+    { "product": "VPN client with strong cryptography", "country": "Japan", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "product" },
+    { "product": "gas centrifuge for uranium enrichment", "country": "Brazil", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "product" },
+    { "product": "aircraft gas-turbine jet engine", "country": "India", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "product" },
+    { "product": "thermal imaging night-vision camera", "country": "South Korea", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "product" },
+    { "product": "5-axis CNC milling machine", "country": "Mexico", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "product" },
+
+    { "product": "datacenter AI training GPU", "country": "China", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "both" },
+    { "product": "advanced lithography semiconductor tool", "country": "China", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "both" },
+    { "product": "inertial navigation system", "country": "Russia", "expected_outcome": "LICENSE_REQUIRED", "expected_driver": "both" },
+
+    { "product": "laptop computer", "country": "Iran", "expected_outcome": "PROHIBITED", "expected_driver": "country" },
+    { "product": "encryption software", "country": "North Korea", "expected_outcome": "PROHIBITED", "expected_driver": "country" },
+    { "product": "medical supplies", "country": "Syria", "expected_outcome": "PROHIBITED", "expected_driver": "country" },
+    { "product": "industrial pump", "country": "Cuba", "expected_outcome": "PROHIBITED", "expected_driver": "country" }
+  ]
+}

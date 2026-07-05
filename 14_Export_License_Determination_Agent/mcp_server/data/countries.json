@@ -1,0 +1,84 @@
+{
+  "_source": "Curated from public OFAC country-based sanctions programs (https://ofac.treasury.gov/sanctions-programs-and-country-information). Simplified for a portfolio demonstration — NOT legal advice. Levels: 'embargoed' = comprehensive US embargo; 'partial' = targeted/sectoral restrictions (end-use / end-user driven); 'unrestricted' = no country-based US embargo.",
+  "_default_level": "unrestricted",
+  "_default_note": "No comprehensive US country-based embargo on record. Standard end-user / end-use screening still applies.",
+  "countries": {
+    "cuba": {
+      "name": "Cuba",
+      "level": "embargoed",
+      "program": "Cuban Assets Control Regulations (CACR)",
+      "note": "Comprehensive US embargo. Most exports prohibited absent a specific OFAC/BIS license.",
+      "aliases": ["republic of cuba"]
+    },
+    "iran": {
+      "name": "Iran",
+      "level": "embargoed",
+      "program": "Iranian Transactions and Sanctions Regulations (ITSR)",
+      "note": "Comprehensive US embargo. Broad prohibition on exports and re-exports.",
+      "aliases": ["islamic republic of iran"]
+    },
+    "north korea": {
+      "name": "North Korea",
+      "level": "embargoed",
+      "program": "North Korea Sanctions Regulations (NKSR)",
+      "note": "Comprehensive US embargo. Near-total prohibition on exports.",
+      "aliases": ["dprk", "democratic people's republic of korea", "n korea"]
+    },
+    "syria": {
+      "name": "Syria",
+      "level": "embargoed",
+      "program": "Syrian Sanctions Regulations (SySR)",
+      "note": "Comprehensive US embargo on most exports of goods, technology and services.",
+      "aliases": ["syrian arab republic"]
+    },
+    "crimea": {
+      "name": "Crimea region (Ukraine)",
+      "level": "embargoed",
+      "program": "Ukraine-/Russia-Related Sanctions (Crimea, DNR, LNR regions)",
+      "note": "Comprehensive embargo on the Russia-occupied Crimea, Donetsk and Luhansk regions.",
+      "aliases": ["dnr", "lnr", "donetsk", "luhansk", "occupied ukraine regions"]
+    },
+    "russia": {
+      "name": "Russia",
+      "level": "partial",
+      "program": "Russian Harmful Foreign Activities Sanctions + BIS Russia export controls",
+      "note": "Extensive sectoral and item-based controls; a very wide range of dual-use and technology exports require a license (many with a policy of denial).",
+      "aliases": ["russian federation"]
+    },
+    "belarus": {
+      "name": "Belarus",
+      "level": "partial",
+      "program": "Belarus Sanctions + BIS export controls",
+      "note": "Broad export controls aligned with the Russia measures; many dual-use items require a license.",
+      "aliases": ["republic of belarus"]
+    },
+    "venezuela": {
+      "name": "Venezuela",
+      "level": "partial",
+      "program": "Venezuela-Related Sanctions",
+      "note": "Targeted sanctions (government, defense, oil sector). Screen end-user and end-use carefully.",
+      "aliases": ["bolivarian republic of venezuela"]
+    },
+    "myanmar": {
+      "name": "Myanmar (Burma)",
+      "level": "partial",
+      "program": "Burma Sanctions Regulations",
+      "note": "Targeted sanctions on the military and affiliated entities; defense and dual-use exports restricted.",
+      "aliases": ["burma"]
+    },
+    "china": {
+      "name": "China",
+      "level": "partial",
+      "program": "BIS military end-use / end-user (MEU) and advanced-computing/semiconductor controls",
+      "note": "No comprehensive embargo, but significant controls on advanced computing, semiconductors, and military end-use — many high-tech items require a license.",
+      "aliases": ["people's republic of china", "prc", "mainland china"]
+    },
+    "afghanistan": {
+      "name": "Afghanistan",
+      "level": "partial",
+      "program": "Afghanistan-related restrictions",
+      "note": "Restrictions tied to sanctioned parties (e.g. the Taliban); heightened end-user screening required.",
+      "aliases": []
+    }
+  }
+}

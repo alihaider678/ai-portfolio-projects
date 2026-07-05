@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets (OPENAI_API_KEY / LANGSMITH_API_KEY live here — NEVER commit)
+.env
+*.env
+!.env.example
+
+# Node
+node_modules/
+.next/
+.env.local
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Personal local run notes (kept off GitHub)
+RUN_LOCALLY.txt

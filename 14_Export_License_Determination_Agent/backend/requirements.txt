@@ -1,0 +1,11 @@
+# FastAPI backend for LicenseGuard.
+# Self-sufficient (includes the agent + engine deps) so it deploys standalone on Render.
+fastapi>=0.139.0
+uvicorn[standard]>=0.32.1
+starlette>=0.49.1
+# Agent + engine deps
+langgraph>=0.2.60
+langchain-core>=0.3.30
+langsmith>=0.1.140
+mcp>=1.2.0
+openai>=1.40.0
