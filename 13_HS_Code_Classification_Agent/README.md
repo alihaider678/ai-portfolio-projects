@@ -34,9 +34,12 @@
 
 ## 🌐 Live demo
 
-> _🚧 Live links coming after deployment (Render + Vercel)._
+- **🖥️ Web dashboard:** **[tarifflens.vercel.app](https://tarifflens.vercel.app)**
+- **⚙️ Backend API:** [tarifflens-backend.onrender.com/api/health](https://tarifflens-backend.onrender.com/api/health)
 
 Type a product description and get its HS code, duty rate, justification, and the candidate codes the retriever considered.
+
+> ⚠️ The backend runs on a free tier that sleeps after ~15 min idle, so the **first** classification after a nap may take ~30–50 s to wake up. After that it's fast.
 
 ---
 
@@ -139,8 +142,8 @@ cd frontend && npm install && npm run dev      # http://localhost:3000
 
 ## 🗺️ Roadmap / what's next
 
-- [ ] Deploy the web dashboard live (Render + Vercel) and add the links above.
-- [ ] Record the Hermes + MCP demo.
+- [x] Deploy the web dashboard live (Render + Vercel).
+- [x] Record the Hermes + MCP demo.
 - [ ] Multi-country duty lookup (WTO Tariff Download Facility) beyond the US.
 - [ ] Add a cross-encoder reranker + a classification eval set (accuracy@k).
 
