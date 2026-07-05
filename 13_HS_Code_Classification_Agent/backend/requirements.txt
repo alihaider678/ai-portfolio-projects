@@ -1,0 +1,11 @@
+# FastAPI REST wrapper around the TariffLens engine.
+# Self-sufficient (includes the engine deps) so it deploys standalone on Render.
+fastapi>=0.139.0
+uvicorn[standard]>=0.32.1
+starlette>=0.49.1
+# Engine deps (shared with mcp_server/)
+openai>=1.40.0
+chromadb>=0.5.0
+rank-bm25>=0.2.2
+numpy>=1.26.0
+httpx>=0.27.0

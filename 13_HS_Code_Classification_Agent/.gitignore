@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets (OPENAI_API_KEY lives here — NEVER commit)
+.env
+*.env
+!.env.example
+
+# Raw downloaded data (large, re-downloadable via ingest.py).
+# The normalized dataset + embeddings.npy ARE committed so deploys work with no
+# re-download and no re-embedding. The Chroma collection is built in-memory at
+# startup from embeddings.npy, so no on-disk Chroma dir is committed.
+mcp_server/data/raw/
+mcp_server/data/chroma/
+
+# Node
+node_modules/
+.next/
+.env.local
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Personal local run notes (kept off GitHub)
+RUN_LOCALLY.txt
