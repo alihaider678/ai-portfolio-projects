@@ -37,10 +37,10 @@ The demo shows the **LangGraph agent** parsing a question, calling the **MCP too
 
 ## 🌐 Live demo
 
-- **🖥️ Web app:** _(add after Vercel deploy)_
-- **⚙️ Backend API:** _(add after Render deploy)_ — health at `/api/health`, docs at `/docs`
+- **🖥️ Web app:** **[licenseguard-omega.vercel.app](https://licenseguard-omega.vercel.app)**
+- **⚙️ Backend API:** [licenseguard-backend.onrender.com/api/health](https://licenseguard-backend.onrender.com/api/health) — docs at [`/docs`](https://licenseguard-backend.onrender.com/docs)
 
-> ⚠️ The backend runs on a free tier that sleeps after ~15 min idle, so the **first** request may take ~30–50 s to wake up.
+> ⚠️ The backend runs on a free tier that sleeps after ~15 min idle, so the **first** request may take ~30–50 s to wake up. After that it's fast.
 
 ---
 
@@ -164,8 +164,8 @@ cd frontend && npm install && npm run dev      # http://localhost:3000
 
 ## 🗺️ Roadmap / what's next
 
-- [ ] Deploy the web app live (Render + Vercel).
-- [ ] Record the LangGraph + MCP + LangSmith demo.
+- [x] Deploy the web app live (Render + Vercel).
+- [x] Record the LangGraph + MCP + LangSmith demo.
 - [ ] Swap the curated reference data for live OFAC / BIS feeds.
 - [ ] Add EU Dual-Use Regulation as a second regime (US CCL is the current basis).
 
