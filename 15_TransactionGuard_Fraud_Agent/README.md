@@ -30,8 +30,8 @@
 
 ## 🌐 Live demo
 
-- **🖥️ Web app:** *(added after deployment)*
-- **⚙️ Backend API:** *(added after deployment)* — docs at `/docs`
+- **🖥️ Web app:** **[transactionguard-omega.vercel.app](https://transactionguard-omega.vercel.app)**
+- **⚙️ Backend API:** [transactionguard-backend.onrender.com/api/health](https://transactionguard-backend.onrender.com/api/health) — docs at [`/docs`](https://transactionguard-backend.onrender.com/docs)
 
 > ⚠️ The backend runs on a free tier that sleeps after ~15 min idle, so the **first** request may take ~30–50 s to wake up. After that it's fast.
 
@@ -174,7 +174,7 @@ Full step-by-step notes: [`RUN_LOCALLY.txt`](RUN_LOCALLY.txt).
 
 - [x] Backend built, tested end-to-end locally (Docker) and against cloud infra (Supabase + Upstash).
 - [x] Frontend built: live console, reasoning-trail visualization, live feed, stats/accuracy, episodic memory explorer, FAQ, analyst ops dashboard.
-- [ ] Deploy backend (Render) + frontend (Vercel), add live links above.
+- [x] Deploy backend (Render) + frontend (Vercel); verified end-to-end in production, including WebSocket over `wss://`.
 - [ ] Record a short demo video of an investigation running end to end.
 
 ---
