@@ -113,6 +113,7 @@ User describes symptom
 ## Local Development
 
 ### Prerequisites
+
 - Python 3.11+
 - Node.js 18+
 - OpenAI API key
@@ -208,6 +209,7 @@ Open `http://localhost:3000`, enter your OpenAI API key, and start a session.
 ## Tech Stack Detail
 
 **Backend**
+
 - `langchain-openai` — LLM nodes
 - `langgraph` — StateGraph orchestration
 - `chromadb` — in-memory vector store
@@ -217,6 +219,7 @@ Open `http://localhost:3000`, enter your OpenAI API key, and start a session.
 - `pydantic-settings` — typed config from env
 
 **Frontend**
+
 - `next` 16 + `react` 19
 - `framer-motion` 12 — animations
 - `tailwindcss` 4 — CSS-first config

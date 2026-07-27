@@ -4,8 +4,8 @@
 
 **AI Portfolio Project 11** — a production-style, multimodal AI system combining vision, speech, retrieval-augmented generation, and a microservices integration.
 
-🔗 **Live Demo:** https://medai-nexus.vercel.app
-🔗 **API:** https://medai-nexus-backend.onrender.com · [Swagger docs](https://medai-nexus-backend.onrender.com/docs)
+🔗 **Live Demo:** <https://medai-nexus.vercel.app>
+🔗 **API:** <https://medai-nexus-backend.onrender.com> · [Swagger docs](https://medai-nexus-backend.onrender.com/docs)
 
 > ⏳ The backend runs on Render's free tier and sleeps after 15 min of inactivity — the **first request may take ~50s** to wake it, then it's fast.
 
@@ -16,14 +16,17 @@
 Three independent AI capabilities in one unified interface:
 
 ### 1. Prescription Reader
+
 Upload a **photo** of a prescription (handwritten or printed) **or record your voice**.
 `Image → GPT-4o Vision` / `Voice → Whisper` → extract drug names → **check interactions** → **spoken warning**.
 
 ### 2. Mixed-PDF Intelligence
+
 Upload any medical PDF containing **text + diagrams**.
 `PyMuPDF` extracts text and embedded images → `GPT-4o Vision` describes each diagram → stored as linked **(text + image)** pairs in ChromaDB.
 
 ### 3. Multimodal RAG
+
 Ask a natural-language medical question.
 Vector retrieval returns the **image AND text together** (not text alone) → the answer is **read aloud** via TTS.
 
@@ -92,7 +95,7 @@ npm install
 npm run build && npm start
 ```
 
-Open http://localhost:3000, click **Set API Keys**, and try the three tabs.
+Open <http://localhost:3000>, click **Set API Keys**, and try the three tabs.
 
 ---
 
