@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── TransactionGuard — "control room" theme, cyan/blue accent, dark by default ── */
+:root, .dark {
+  color-scheme: dark;
+  --bg: #070b14;
+  --bg-2: #0a0f1e;
+  --surface: #0d1424;
+  --surface-2: #121a2e;
+  --card: rgba(16, 23, 41, 0.6);
+  --card-solid: #0e1626;
+  --border: rgba(56, 189, 248, 0.16);
+  --border-strong: rgba(103, 209, 255, 0.28);
+
+  --text-strong: #eef6ff;
+  --text: #c3d0e8;
+  --text-muted: #8393b3;
+  --text-faint: #56637f;
+
+  --accent: #22d3ee;
+  --accent-2: #3b82f6;
+  --accent-soft: rgba(34, 211, 238, 0.13);
+  --input-bg: #0a0f1e;
+  --glow: rgba(34, 211, 238, 0.32);
+  --grid: rgba(56, 189, 248, 0.055);
+
+  --ok: #34d399;   --ok-soft: rgba(16,185,129,.13);  --ok-bd: rgba(16,185,129,.4);
+  --warn: #fbbf24; --warn-soft: rgba(245,158,11,.13); --warn-bd: rgba(245,158,11,.45);
+  --stop: #fb7185; --stop-soft: rgba(244,63,94,.14);  --stop-bd: rgba(244,63,94,.48);
+}
+
+/* ── LIGHT ─────────────────────────────────────────────────────────────── */
+.light {
+  color-scheme: light;
+  --bg: #f6f8fc;
+  --bg-2: #eef2f9;
+  --surface: #ffffff;
+  --surface-2: #eef2f9;
+  --card: rgba(255, 255, 255, 0.75);
+  --card-solid: #ffffff;
+  --border: rgba(8, 145, 178, 0.14);
+  --border-strong: rgba(8, 145, 178, 0.24);
+
+  --text-strong: #0c1524;
+  --text: #2a3550;
+  --text-muted: #5b6a8a;
+  --text-faint: #8a97b3;
+
+  --accent: #0891b2;
+  --accent-2: #2563eb;
+  --accent-soft: rgba(8, 145, 178, 0.09);
+  --input-bg: #ffffff;
+  --glow: rgba(8, 145, 178, 0.2);
+  --grid: rgba(8, 145, 178, 0.05);
+
+  --ok: #059669;   --ok-soft: rgba(5,150,105,.09);   --ok-bd: rgba(5,150,105,.32);
+  --warn: #b45309; --warn-soft: rgba(180,83,9,.09);  --warn-bd: rgba(180,83,9,.32);
+  --stop: #e11d48; --stop-soft: rgba(225,29,72,.08); --stop-bd: rgba(225,29,72,.32);
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  a, button, input, select, textarea, .card, [role="button"] {
+    transition: background-color .2s ease, border-color .2s ease, color .15s ease,
+      box-shadow .25s ease, transform .15s ease;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  html { scroll-behavior: smooth; }
+  h1, h2, h3, .display { font-family: var(--font-display), var(--font-inter), sans-serif; letter-spacing: -0.02em; }
+  code, .mono { font-family: var(--font-mono), monospace; }
+}
+
+/* Surfaces */
+.card { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(10px); }
+.card-solid { background: var(--card-solid); border: 1px solid var(--border); }
+.surface { background: var(--surface); }
+
+/* Ambient mesh + fine grid backdrop */
+.mesh { position: relative; }
+.mesh::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(42rem 30rem at 10% -10%, var(--accent-soft), transparent 60%),
+    radial-gradient(36rem 28rem at 95% 0%, rgba(59,130,246,0.10), transparent 60%);
+}
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* Gradient text + accents */
+.grad-text {
+  background: linear-gradient(110deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.grad-bg { background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+.glow { box-shadow: 0 0 0 1px var(--border-strong), 0 12px 40px -12px var(--glow); }
+
+/* Risk semantics (LOW/MEDIUM/HIGH -> ok/warn/stop) */
+.risk-low    { color: var(--ok);   background: var(--ok-soft);   border-color: var(--ok-bd); }
+.risk-medium { color: var(--warn); background: var(--warn-soft); border-color: var(--warn-bd); }
+.risk-high   { color: var(--stop); background: var(--stop-soft); border-color: var(--stop-bd); }
+.dot-low { background: var(--ok); } .dot-medium { background: var(--warn); } .dot-high { background: var(--stop); }
+
+/* Inputs */
+.field { background: var(--input-bg); border: 1px solid var(--border-strong); color: var(--text); }
+.field::placeholder { color: var(--text-faint); }
+.field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.chip { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); }
+.chip:hover { border-color: var(--accent); color: var(--text-strong); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; }
+
+/* Animations */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.pulse { animation: blink 2s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .8s linear infinite; }
+@keyframes flowdash { to { stroke-dashoffset: -16; } }
+.flowline { stroke-dasharray: 5 5; animation: flowdash 1s linear infinite; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .4s ease both; }
+
+/* Live "radar sweep" ambience for the hero — cheap (single conic-gradient rotation) */
+@keyframes sweep { to { transform: rotate(360deg); } }
+.radar-sweep {
+  position: absolute; inset: -20%; z-index: 0; pointer-events: none; opacity: .35;
+  background: conic-gradient(from 0deg, transparent 0deg, var(--accent-soft) 8deg, transparent 40deg);
+  animation: sweep 8s linear infinite;
+}
+
+/* Live-feed row entrance */
+@keyframes slidein { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.slide-in { animation: slidein .35s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .radar-sweep, .pulse, .spin, .flowline { animation: none !important; }
+}

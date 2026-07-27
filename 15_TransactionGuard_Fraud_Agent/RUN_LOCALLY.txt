@@ -1,0 +1,48 @@
+TransactionGuard — run the backend locally
+============================================
+
+1. Copy the env file:
+     cp .env.example .env
+   (defaults already point at the docker-compose Postgres/Redis ports and
+   local-http-safe cookie settings — you only need to fill in ANALYST_PASSWORD
+   and, if you want demo mode, DEMO_OPENAI_API_KEY.)
+
+2. Start Postgres (pgvector) + Redis:
+     docker compose up -d
+   This auto-creates the schema from db/schema.sql on first boot.
+
+3. Use the shared venv at 01_Projects/venv (install backend deps into it —
+   includes the agent's deps too):
+     ..\venv\Scripts\activate          (Windows)   /  source ../venv/bin/activate (mac/linux)
+     pip install -r backend/requirements.txt
+
+4. Generate the synthetic dataset (only needed once, or after changing the generator):
+     python data/generate_synthetic_data.py
+
+5. Seed the database:
+     python data/seed_db.py
+
+6. Run the backend:
+     cd backend
+     uvicorn main:app --port 8020 --reload
+
+7. Check it's alive:
+     curl http://localhost:8020/api/health
+
+8. Try an investigation (grab a transaction_id from data/transactions.json —
+   pick one with "is_synthetic_anomaly": true to see a flagged case):
+     curl -X POST http://localhost:8020/api/transactions/investigate \
+       -H "Content-Type: application/json" \
+       -d "{\"transaction_id\": \"TXN-xxxxxxxxxxxx\", \"openai_api_key\": \"sk-...\"}"
+
+   This returns immediately with {"investigation_id": "...", "status": "running"}.
+   Poll it:
+     curl http://localhost:8020/api/investigations/<investigation_id>
+
+9. Analyst login (for the feedback endpoint):
+     curl -c cookies.txt -X POST http://localhost:8020/api/auth/login \
+       -H "Content-Type: application/json" \
+       -d "{\"username\": \"analyst\", \"password\": \"<ANALYST_PASSWORD from .env>\"}"
+     curl -b cookies.txt http://localhost:8020/api/auth/session
+
+Full API docs (Swagger UI): http://localhost:8020/docs

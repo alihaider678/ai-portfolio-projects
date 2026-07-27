@@ -1,0 +1,5 @@
+# TransactionGuard — LangGraph adaptive investigation agent
+langgraph>=0.2.60      # graph orchestration (conditional/looping edges)
+langchain-core>=0.3.30 # Runnable base used by langgraph
+openai>=1.40.0         # triage / evaluate / verdict reasoning + embeddings (BYOK per request)
+asyncpg>=0.29.0        # Postgres + pgvector (episodic memory, transaction history)

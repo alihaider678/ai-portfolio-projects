@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: transactionguard-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tg
+      POSTGRES_PASSWORD: tg_local_dev
+      POSTGRES_DB: transactionguard
+    ports:
+      - "5434:5432"
+    volumes:
+      - tg_pgdata:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+
+  redis:
+    image: redis:7-alpine
+    container_name: transactionguard-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+
+volumes:
+  tg_pgdata:
