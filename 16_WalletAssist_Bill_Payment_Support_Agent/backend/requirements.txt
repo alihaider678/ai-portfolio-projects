@@ -1,0 +1,10 @@
+# WalletAssist — FastAPI backend
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.9.0
+aiosqlite>=0.20.0
+python-dotenv>=1.0.1
+
+# The agent's own deps (LangGraph, OpenAI, Chroma, rank-bm25, numpy) — installed
+# alongside so `pip install -r backend/requirements.txt` is self-sufficient.
+-r ../agent/requirements.txt

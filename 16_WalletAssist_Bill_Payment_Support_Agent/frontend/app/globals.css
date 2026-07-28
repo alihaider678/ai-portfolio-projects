@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── WalletAssist — "friendly AI assistant" identity: violet + warm coral,
+   organic blobs instead of grid lines, squircle panels instead of hairline
+   dashboard cards. Deliberately NOT another cyan/emerald control-room clone. ── */
+:root, .dark {
+  color-scheme: dark;
+  --bg: #0b0a16;
+  --bg-2: #100e1e;
+  --surface: #161329;
+  --surface-2: #1c1834;
+  --card: #14122480;
+  --card-solid: #171432;
+  --border: rgba(167, 139, 250, 0.16);
+  --border-strong: rgba(167, 139, 250, 0.32);
+
+  --text-strong: #f7f5ff;
+  --text: #cbc3e8;
+  --text-muted: #8d84b3;
+  --text-faint: #5c5480;
+
+  --accent: #a78bfa;
+  --accent-2: #fb923c;
+  --accent-soft: rgba(167, 139, 250, 0.14);
+  --accent2-soft: rgba(251, 146, 60, 0.14);
+  --input-bg: #171432;
+  --glow: rgba(167, 139, 250, 0.35);
+
+  --ok: #34d399;   --ok-soft: rgba(52,211,153,.14);  --ok-bd: rgba(52,211,153,.4);
+  --warn: #fbbf24; --warn-soft: rgba(245,158,11,.14); --warn-bd: rgba(245,158,11,.45);
+  --stop: #fb7185; --stop-soft: rgba(244,63,94,.15);  --stop-bd: rgba(244,63,94,.48);
+
+  --bubble-user: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  --bubble-user-text: #ffffff;
+  --bubble-agent: #1c1834;
+  --bubble-agent-text: #e7e2f7;
+  --phone-chrome: #08070f;
+}
+
+/* ── LIGHT ─────────────────────────────────────────────────────────────── */
+.light {
+  color-scheme: light;
+  --bg: #faf9ff;
+  --bg-2: #f3f1fc;
+  --surface: #ffffff;
+  --surface-2: #f3f1fc;
+  --card: #ffffffcc;
+  --card-solid: #ffffff;
+  --border: rgba(124, 58, 237, 0.13);
+  --border-strong: rgba(124, 58, 237, 0.24);
+
+  --text-strong: #1a1530;
+  --text: #423a5c;
+  --text-muted: #756b95;
+  --text-faint: #a59cc2;
+
+  --accent: #7c3aed;
+  --accent-2: #ea580c;
+  --accent-soft: rgba(124, 58, 237, 0.08);
+  --accent2-soft: rgba(234, 88, 12, 0.09);
+  --input-bg: #ffffff;
+  --glow: rgba(124, 58, 237, 0.22);
+
+  --ok: #059669;   --ok-soft: rgba(5,150,105,.09);   --ok-bd: rgba(5,150,105,.32);
+  --warn: #b45309; --warn-soft: rgba(180,83,9,.09);  --warn-bd: rgba(180,83,9,.32);
+  --stop: #e11d48; --stop-soft: rgba(225,29,72,.08); --stop-bd: rgba(225,29,72,.32);
+
+  --bubble-user: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  --bubble-user-text: #ffffff;
+  --bubble-agent: #f3f1fc;
+  --bubble-agent-text: #2b2545;
+  --phone-chrome: #ffffff;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  a, button, input, select, textarea, .panel, [role="button"] {
+    transition: background-color .2s ease, border-color .2s ease, color .15s ease,
+      box-shadow .25s ease, transform .15s ease;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  html { scroll-behavior: smooth; }
+  h1, h2, h3, .display { font-family: var(--font-display), var(--font-inter), sans-serif; letter-spacing: -0.01em; }
+  code, .mono { font-family: var(--font-mono), monospace; }
+}
+
+/* Squircle panels — soft shadow depth instead of hairline-border dashboard cards */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 24px 48px -24px rgba(80, 50, 160, 0.25);
+}
+.light .panel { box-shadow: 0 1px 2px rgba(80,50,160,0.04), 0 24px 48px -24px rgba(124,58,237,0.14); }
+.panel-solid { background: var(--card-solid); border: 1px solid var(--border); border-radius: 28px; }
+
+/* Organic blob backdrop — replaces grid-line "control room" backgrounds */
+.blob-field { position: relative; isolation: isolate; }
+.blob-field::before, .blob-field::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; filter: blur(60px);
+  opacity: .55; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+.blob-field::before {
+  width: 34rem; height: 30rem; top: -12rem; left: -10rem;
+  background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%);
+  animation: blobfloat 16s ease-in-out infinite;
+}
+.blob-field::after {
+  width: 30rem; height: 28rem; top: 4rem; right: -12rem;
+  background: radial-gradient(circle at 60% 40%, var(--accent-2), transparent 70%);
+  animation: blobfloat 20s ease-in-out infinite reverse;
+}
+@keyframes blobfloat {
+  0%, 100% { transform: translate(0,0) rotate(0deg) scale(1); }
+  33% { transform: translate(2rem,-1.5rem) rotate(8deg) scale(1.05); }
+  66% { transform: translate(-1.5rem,2rem) rotate(-6deg) scale(0.97); }
+}
+
+/* Gradient text + accents */
+.grad-text {
+  background: linear-gradient(110deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.grad-bg { background: linear-gradient(135deg, var(--accent), #8b5cf6); }
+.glow { box-shadow: 0 0 0 1px var(--border-strong), 0 16px 40px -14px var(--glow); }
+
+.risk-low    { color: var(--ok);   background: var(--ok-soft);   border-color: var(--ok-bd); }
+.risk-medium { color: var(--warn); background: var(--warn-soft); border-color: var(--warn-bd); }
+.risk-high   { color: var(--stop); background: var(--stop-soft); border-color: var(--stop-bd); }
+
+.field { background: var(--input-bg); border: 1px solid var(--border-strong); color: var(--text); border-radius: 16px; }
+.field::placeholder { color: var(--text-faint); }
+.field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.chip { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 999px; }
+.chip:hover { border-color: var(--accent); color: var(--text-strong); }
+
+/* Suggestion pills (hero) */
+.pill {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+  color: var(--text-muted); font-size: 0.8125rem; padding: 0.55rem 1rem;
+}
+.pill:hover { border-color: var(--accent); color: var(--text-strong); background: var(--accent-soft); }
+
+/* Phone-mockup chrome — the chat lives inside this, front-and-center */
+.phone-frame {
+  width: 100%; max-width: 380px; border-radius: 2.75rem;
+  background: var(--phone-chrome);
+  border: 10px solid var(--phone-chrome);
+  box-shadow: 0 1px 1px rgba(0,0,0,.06), 0 40px 80px -30px rgba(80,50,160,.45),
+              0 0 0 1px var(--border);
+  overflow: hidden; position: relative;
+}
+.phone-notch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 40%; height: 22px; background: var(--phone-chrome); border-radius: 0 0 14px 14px; z-index: 20;
+}
+
+/* Chat bubbles */
+.bubble-user { background: var(--bubble-user); color: var(--bubble-user-text); border-radius: 20px 20px 4px 20px; }
+.bubble-agent { background: var(--bubble-agent); color: var(--bubble-agent-text); border-radius: 20px 20px 20px 4px; border: 1px solid var(--border); }
+
+/* Source badges */
+.badge-faq { color: #a78bfa; background: rgba(167,139,250,.14); }
+.badge-tool { color: #34d399; background: rgba(52,211,153,.14); }
+.badge-escalation { color: #fb923c; background: rgba(251,146,60,.16); }
+.badge-clarify { color: #60a5fa; background: rgba(96,165,250,.14); }
+
+/* Floating decorative icon badges around the phone (custom illustration, not stock art) */
+.float-badge {
+  position: absolute; display: flex; align-items: center; justify-content: center;
+  border-radius: 20px; box-shadow: 0 12px 30px -10px rgba(80,50,160,.4);
+}
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+}
+.float-anim { animation: float-y 5s ease-in-out infinite; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .45s ease both; }
+
+@keyframes bounce-dot { 0%,80%,100%{transform:scale(0.6); opacity:.5} 40%{transform:scale(1); opacity:1} }
+.typing-dot { animation: bounce-dot 1.2s ease-in-out infinite; }
+
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 var(--accent-soft); } 100% { box-shadow: 0 0 0 8px transparent; } }
+.pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-anim, .pulse-ring, .blob-field::before, .blob-field::after, .typing-dot { animation: none !important; }
+}

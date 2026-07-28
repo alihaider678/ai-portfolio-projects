@@ -1,0 +1,204 @@
+{
+  "_source": "https://keenu.pk/faqs",
+  "_fetched": "2026-07-28",
+  "_note": "Real, publicly published FAQ content from Keenu's own help page, used here strictly as a public-domain-style RAG grounding source for a portfolio demo. WalletAssist is an unofficial, unaffiliated demonstration project — not built, endorsed, or sponsored by Keenu / Wemsol Pvt Ltd.",
+  "groups": [
+    {
+      "category": "About Keenu",
+      "items": [
+        {
+          "q": "What is Keenu?",
+          "a": "Keenu (operated under Wemsol Pvt Ltd) is a leading Pakistani FinTech that provides digital payment solutions serving thousands of merchants across Pakistan through its state-of-the-art POS terminals. Keenu also offers a digital wallet for consumers to experience cashless, quick, and simple payment transfers in a safe way regulated under the State Bank of Pakistan’s EMI regulations. Keenu is a proud home-grown Pakistani FinTech brand that has been on a mission to digitize payments in the country for a decade."
+        }
+      ]
+    },
+    {
+      "category": "Keenu App",
+      "items": [
+        {
+          "q": "What is Keenu App?",
+          "a": "Keenu (operated under Wemsol Pvt Ltd) is Pakistan’s first Digital Wallet to provide a cashless, quick, and simple payment experience. You can use Keenu to pay your bills, send and receive money, pay in groups, split bills, and mobile top-ups."
+        },
+        {
+          "q": "How can I download the Keenu App?",
+          "a": "You can download the Keenu App from Play store, App store and Huawei store free of cost."
+        },
+        {
+          "q": "How secure is the Keenu account?",
+          "a": "Keenu is a registered wallet under the State Bank of Pakistan’s EMI regulation. We maintain administrative, technical, and physical safeguards to protect customer data in our custody and control from unauthorized access, use, modification, or disclosure as per the local regulatory requirements, international standards and best security practices. Your data shared with the third party will always be consent-based and confidential."
+        }
+      ]
+    },
+    {
+      "category": "Account",
+      "items": [
+        {
+          "q": "Who can open a Keenu account?",
+          "a": "Any Pakistani citizen above 18 years who has a mobile phone SIM issued by local network providers and has a valid NADRA CNIC or NICOP can register a Keenu account."
+        },
+        {
+          "q": "How can I sign up for a Keenu account?",
+          "a": "Signup your Keenu account by following these simple steps: First enter your Mobile Number Verify One Time Password (OTP) Enter your Name Enter your Email address Create Passcode Signup"
+        },
+        {
+          "q": "Can I register for more than one Keenu account on a single CNIC/NICOP?",
+          "a": "No, only one Keenu account can be opened on a single CNIC/NICOP."
+        },
+        {
+          "q": "What are the Keenu transaction limits?",
+          "a": "Transaction limits for Keenu are (Aggregate Monthly loadable limit): Unverified - N/A; ID Verified - 50,000; Biometric Verified - 200,000."
+        },
+        {
+          "q": "How can I increase my transaction limits?",
+          "a": "You can increase your transaction limits by upgrading your account through CNIC/NICOP verification and Biometric Verification."
+        },
+        {
+          "q": "Why do I have to provide my CNIC picture and selfie to open my account?",
+          "a": "Keenu wallet is an Electronic Money Institute regulated by the State Bank of Pakistan and requires customers’ information to verify them. This will assist Keenu in keeping your account safe and reducing the risk of financial fraud."
+        },
+        {
+          "q": "How can I perform biometric verification?",
+          "a": "To perform biometric verification follow below steps: Visit a nearby Meezan Bank ATM along with your CNIC. On the ATM, select Biometric Service. Select Keenu . Click on Biometric verification. Enter your CNIC Number and Mobile Number registered with Keenu . Provide biometric impressions as asked by the ATM machine. 7. You will receive a notification of the upgrade."
+        },
+        {
+          "q": "Can I transfer the ownership of my Keenu account to someone else?",
+          "a": "No, this is not allowed. You need to request the closure of your account. To close your account, you can call 021-111-1KEENU(53368) or email us at Email: help@keenu.pk"
+        },
+        {
+          "q": "After how long will my Keenu account become dormant?",
+          "a": "Your Keenu account will be dormant if no transaction is performed over the past 180 days ( 6 months)."
+        },
+        {
+          "q": "Is there any fee to use the Keenu account?",
+          "a": "To view complete charges refer to the Keenu Schedule of Charges"
+        },
+        {
+          "q": "How can I deactivate my account?",
+          "a": "To deactivate your account, you can call 021-111-1KEENU(53368) or email us at help@keenu.pk"
+        },
+        {
+          "q": "Will I get any notification or message after any transaction is completed?",
+          "a": "Yes, you will receive a message and notification of all the transactions performed through your account. You can also view your entire transactions in the transaction history section in the App."
+        },
+        {
+          "q": "How can I change my passcode?",
+          "a": "You can change your passcode by following the below steps: Go to menu Select settings Click on change passcode Set your new passcode And you are done!"
+        },
+        {
+          "q": "How can I view my ‘Transaction History’?",
+          "a": "You can view your Transaction History by clicking on the icon in the footer."
+        },
+        {
+          "q": "Can I request money from Keenu users?",
+          "a": "Yes, you can request money from the Move Money option.Your friend will be notified and can instantly share funds with you upon accepting your request. Click on ‘Move Money’ tab Select a Keenu user Enter amount Click on ‘Pay’ button You are done!"
+        },
+        {
+          "q": "My account is not approved yet. What can I do?",
+          "a": "Don’t worry! During pending status, your identity and other information will be under review. Apart from this, please ensure that: Your mobile camera is functioning. Your selfie and CNIC picture is clear You provide the original CNIC picture. (Black and white CNIC will not be accepted)"
+        },
+        {
+          "q": "My phone has been lost/stolen. What should I do now?",
+          "a": "To report lost/stolen devices, you can call 021-111-1KEENU(53368) or email us at help@keenu.pk , so that we can disable access from your devices. After reissuing your SIM install Keenu app right away on your new device, and login with your registered mobile number and passcode. Since you have logged in using the new device, you will receive a One Time Password (OTP) to register your device."
+        }
+      ]
+    },
+    {
+      "category": "My Money",
+      "items": [
+        {
+          "q": "What is My Money?",
+          "a": "Fund that is available in your Keenu account is referred as My Money."
+        },
+        {
+          "q": "How can I withdraw money from my Keenu account?",
+          "a": "You can easily withdraw funds through Biometric Cash Withdrawal via Meezan Bank ATMs."
+        },
+        {
+          "q": "How can I do Biometric cash withdrawal through an ATM?",
+          "a": "Follow the below steps for cash withdrawal: Visit a nearby Meezan Bank ATM along with your CNIC. On the ATM, select Biometric Service. Select Keenu Select Cash Withdrawal Enter your CNIC Number and Mobile Number registered with Keenu . Enter the desired fund for withdrawal. Provide biometric impressions as asked by the ATM machine. The amount will be dispensed."
+        },
+        {
+          "q": "Where can I use my Keenu funds?",
+          "a": "Keenu funds can be used for payments such as: Bill payments and Mobile top ups Ecommerce (Online payments) Gift vouchers such as Netflix, iTunes, PlayStation, and etc. Group payments P2P transactions"
+        }
+      ]
+    },
+    {
+      "category": "Add Money",
+      "items": [
+        {
+          "q": "How can I deposit money into my Keenu account?",
+          "a": "You can deposit funds into Keenu account through: Interbank Fund Transfer (IBFT) Cash deposit via Meezan Bank branches"
+        },
+        {
+          "q": "How can I deposit Cash via Meezan Bank?",
+          "a": "Visit nearby Meezan Bank branch Fill deposit slip Submit the deposit slip with cash to the cashier"
+        }
+      ]
+    },
+    {
+      "category": "Move Money",
+      "items": [
+        {
+          "q": "How can I Move Money?",
+          "a": "You can transfer your money in two ways: Pay to Keenu users IBFT"
+        },
+        {
+          "q": "How can I pay to Keenu users?",
+          "a": "The process is very simple and it is as follows: Click on ‘Move Money’ tab Select a Keenu user Enter amount Click on ‘Pay’ button You are done!"
+        },
+        {
+          "q": "How can I link my bank account to my Keenu account?",
+          "a": "Signup your Keenu account by following these simple steps: Go to menu or Add Money Enter your Bank Account Number or IBAN Your account will be linked Note: You can make your bank account visible with your friends for easy fund transfer to your Bank Account directly."
+        }
+      ]
+    },
+    {
+      "category": "Online Payments",
+      "items": [
+        {
+          "q": "Is Keenu accepted for Online Payments?",
+          "a": "Keenu is accepted on Online Stores in Pakistan that are listed as our merchants, so relieve yourself from the hassle of Cash on Delivery by paying online with Keenu account."
+        },
+        {
+          "q": "How can I pay with Keenu on Online Stores?",
+          "a": "Paying with Keenu on Online Stores is very easy and convenient. Just follow the following simple steps: Visit the online store Place your order Select “ Keenu ” as your payment option Select “ Keenu Wallet ” Enter your registered mobile number and passcode Enter OTP received on your registered mobile number Your payment is completed!"
+        }
+      ]
+    },
+    {
+      "category": "Bill Payments",
+      "items": [
+        {
+          "q": "How can I pay bills using Keenu?",
+          "a": "The simple process of Bill Payments is as follows: Go to “Mobile and Bill Payment” Select the “Bill Payment” option Select Bill Type, Bill Company, and enter consumer number Click on “Next” to pay Your Bill is paid! Note: Once the bill has been added you can pay it by selecting it from the list."
+        },
+        {
+          "q": "How long will it take to clear off my bills?",
+          "a": "The bill paid through Keenu will be cleared at that very moment. If it still doesn’t clear out, please contact Keenu customer care on 021-111-1KEENU(53368)"
+        },
+        {
+          "q": "What if I paid my bill on due day, will it still be cleared off from my account?",
+          "a": "No worries! Your bill will be cleared on the same day, however it may take some time to update the utility provider’s system."
+        },
+        {
+          "q": "How can I recharge my mobile number through Top-up?",
+          "a": "You can easily recharge your mobile number by: Go to “Mobile and Bill Payment” Select the “Mobile Top up” option Select Network Type and Service Type Enter Mobile Number and Amount Click on “Next” Your number is recharged! Note: Once the number has been added you can recharge it by selecting it from the list."
+        }
+      ]
+    },
+    {
+      "category": "Groups",
+      "items": [
+        {
+          "q": "How can I create a Group?",
+          "a": "Click Groups in the Home Page Select (+) Select members from your contact list Enter group details and amount to be collected Click on “Create” The group is created!"
+        },
+        {
+          "q": "Which account level can collect funds in the group?",
+          "a": "You need to be a CNIC/Biometric verified customer, to collect the funds in the Group."
+        }
+      ]
+    }
+  ]
+}

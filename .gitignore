@@ -4,6 +4,7 @@
 
 # Vector DB (generated at runtime — never commit)
 **/data/chroma_db/
+*.db
 __pycache__/
 *.pyc
 *.pyo

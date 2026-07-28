@@ -1,0 +1,7 @@
+# WalletAssist — LangGraph intent-routing agent (RAG + tool-calling)
+langgraph>=0.2.60      # graph orchestration (conditional routing)
+langchain-core>=0.3.30 # Runnable base used by langgraph
+openai>=1.40.0         # classify / compose / escalation reasoning + embeddings (BYOK per request)
+chromadb>=0.5.20       # dense vector search over the FAQ knowledge base
+rank-bm25>=0.2.2       # sparse keyword search (hybrid retrieval, fused via RRF)
+numpy>=1.26.4          # precomputed FAQ embeddings
