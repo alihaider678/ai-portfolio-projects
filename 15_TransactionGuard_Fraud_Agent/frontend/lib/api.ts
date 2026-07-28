@@ -95,13 +95,21 @@ export interface Precedent {
   created_at: string;
 }
 
-async function getJSON<T>(path: string, opts: RequestInit = {}): Promise<T | null> {
-  try {
-    const res = await fetch(`${API_BASE}${path}`, { signal: AbortSignal.timeout(8000), ...opts });
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+// Render's free tier sleeps after ~15 min idle and can take 30-50s to wake on the
+// first request. Retry transient failures (timeout/network/5xx) with backoff instead
+// of giving up after one 8s attempt, or the first visitor after idle sees empty data.
+async function getJSON<T>(path: string, opts: RequestInit = {}, retries = 0): Promise<T | null> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const res = await fetch(`${API_BASE}${path}`, { signal: AbortSignal.timeout(15000), ...opts });
+      if (res.ok) return res.json();
+      if (res.status < 500 || attempt >= retries) return null;
+    } catch {
+      if (attempt >= retries) return null;
+    }
+    await sleep(3000);
   }
 }
 
@@ -111,13 +119,15 @@ export const getEvalAccuracy = () => getJSON<EvalAccuracy>("/eval/accuracy");
 export const getGraphMermaid = () => getJSON<{ mermaid: string }>("/graph");
 
 export async function getAccounts(): Promise<Account[]> {
-  const data = await getJSON<{ accounts: Account[] }>("/accounts");
+  const data = await getJSON<{ accounts: Account[] }>("/accounts", {}, 8);
   return data?.accounts ?? [];
 }
 
 export async function getHistory(accountId: string): Promise<Transaction[]> {
   const data = await getJSON<{ account_id: string; transactions: Transaction[] }>(
-    `/transactions/history/${accountId}`
+    `/transactions/history/${accountId}`,
+    {},
+    8
   );
   return data?.transactions ?? [];
 }

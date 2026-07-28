@@ -24,12 +24,15 @@ export default function InvestigationConsole() {
   const [investigation, setInvestigation] = useState<Investigation | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [accountsLoading, setAccountsLoading] = useState(true);
 
   useEffect(() => {
+    setAccountsLoading(true);
     getAccounts().then((list) => {
       const sorted = [...list].sort((a, b) => b.anomaly_count - a.anomaly_count);
       setAccounts(sorted);
       if (sorted.length) setAccountId(sorted[0].account_id);
+      setAccountsLoading(false);
     });
   }, []);
 
@@ -106,9 +109,16 @@ export default function InvestigationConsole() {
         <div className="card rounded-2xl p-5 space-y-4 h-fit">
           <div>
             <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1.5">Account</label>
+            {accountsLoading && accounts.length === 0 && (
+              <div className="flex items-center gap-2 text-xs text-[var(--text-faint)] mb-1.5">
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                Waking up the backend — first load after idle can take up to a minute…
+              </div>
+            )}
             <Select
               value={accountId}
               onChange={setAccountId}
+              placeholder={accountsLoading ? "Loading accounts…" : "Select…"}
               options={accounts.map((a) => ({
                 value: a.account_id,
                 label: `${a.account_id} · ${a.display_name} · ${a.home_city}`,
