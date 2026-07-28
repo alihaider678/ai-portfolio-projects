@@ -27,8 +27,8 @@
 
 ## 🌐 Live demo
 
-- **🖥️ Web app:** *(added after deployment)*
-- **⚙️ Backend API:** *(added after deployment)* — docs at `/docs`
+- **🖥️ Web app:** **[walletassist.vercel.app](https://walletassist.vercel.app)**
+- **⚙️ Backend API:** [walletassist-backend.onrender.com/api/health](https://walletassist-backend.onrender.com/api/health) — docs at [`/docs`](https://walletassist-backend.onrender.com/docs)
 
 > ⚠️ The backend runs on a free tier that sleeps after ~15 min idle, so the **first** request may take ~30–50 s to wake up. After that it's fast.
 
@@ -157,7 +157,7 @@ cd frontend && npm install && npm run dev      # http://localhost:3000
 
 - [x] Backend built, tested end-to-end locally across all four routing paths.
 - [x] Frontend built: phone-mockup chat UI, source-indicator badges, dark/light theme.
-- [ ] Deploy backend (Render) + frontend (Vercel).
+- [x] Deploy backend (Render) + frontend (Vercel); verified end-to-end in production (CORS, live chat, correct RAG routing).
 - [ ] Record a short demo video of a conversation covering all four paths.
 
 ---
