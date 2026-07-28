@@ -109,6 +109,21 @@ def _current_analyst(tg_analyst: Optional[str] = Cookie(None)) -> dict:
     return payload
 
 
+def _strip_technical_fields(d: dict) -> dict:
+    """Drop DB-internal audit columns before a record reaches the LLM's prompt context.
+
+    `created_at` is the row's *insertion* timestamp (all synthetic data was seeded in
+    one batch), not a meaningful business date — but transactions/accounts are dumped
+    as raw JSON into the agent's prompts, and the model would otherwise compare it
+    against the transaction's (deliberately backdated) `occurred_at` and hallucinate
+    "this looks backdated/manipulated" on any account's first-ever transaction, where
+    no other check has history to counter it with. `id` is likewise just a DB primary
+    key with no investigative meaning. Neither field is read anywhere else (frontend
+    types never reference them) so dropping them here is safe.
+    """
+    return {k: v for k, v in d.items() if k not in ("id", "created_at")}
+
+
 async def _get_history_cached(account_id: str, before: str) -> list[dict]:
     cached = await redis_client.get_cached_history(account_id)
     if cached is not None:
@@ -185,6 +200,9 @@ async def investigate(req: InvestigateRequest, request: Request):
 
     account = await db.get_account(transaction["account_id"])
     history = await _get_history_cached(transaction["account_id"], transaction["occurred_at"])
+
+    transaction = _strip_technical_fields(transaction)
+    account = _strip_technical_fields(account) if account else account
 
     investigation_id = str(uuid.uuid4())
     await db.create_investigation(investigation_id, req.transaction_id)
