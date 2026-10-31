@@ -22,8 +22,13 @@ async def init_client() -> Optional[redis.Redis]:
     url = os.environ.get("REDIS_URL", "")
     if not url:
         return None
-    _client = redis.from_url(url, decode_responses=True)
-    await _client.ping()
+    client = redis.from_url(url, decode_responses=True)
+    try:
+        await client.ping()
+    except Exception as e:
+        print(f"WARNING: Redis unavailable, starting with redis=off: {type(e).__name__}: {e}")
+        return None
+    _client = client
     return _client
 
 

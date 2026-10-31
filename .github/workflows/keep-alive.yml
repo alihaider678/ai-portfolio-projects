@@ -1,0 +1,36 @@
+# Keeps free-tier infra from going dormant:
+#  - Supabase pauses a free project after ~7 days with no DB activity, which takes
+#    TransactionGuard's backend down (see 15_TransactionGuard_Fraud_Agent).
+#    /api/stats runs real queries, so it counts as activity; /api/health does not.
+#  - Also wakes the other Render backends so they don't sit cold indefinitely.
+# If the TransactionGuard check fails, the run fails and GitHub emails the repo owner.
+name: keep-alive
+
+on:
+  schedule:
+    - cron: "0 6 */2 * *"   # every 2 days, 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: TransactionGuard (touches Supabase)
+        run: |
+          # Render free tier cold-starts in 30-60s, so allow retries
+          curl -fsS --retry 5 --retry-delay 20 --retry-all-errors --max-time 90 \
+            https://transactionguard-backend.onrender.com/api/stats
+
+      - name: Other Render backends (best effort)
+        run: |
+          for url in \
+            https://medical-triage-backend-8q77.onrender.com \
+            https://rxsafe-ai-backend.onrender.com \
+            https://medai-nexus-backend.onrender.com \
+            https://aegisscreen-backend.onrender.com \
+            https://tarifflens-backend.onrender.com \
+            https://licenseguard-backend.onrender.com \
+            https://walletassist-backend.onrender.com; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 "$url/docs" || true)
+            echo "$url -> $code"
+          done

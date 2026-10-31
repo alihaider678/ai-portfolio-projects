@@ -15,7 +15,13 @@ async def init_pool() -> Optional[asyncpg.Pool]:
     url = os.environ.get("DATABASE_URL", "")
     if not url:
         return None
-    _pool = await asyncpg.create_pool(url, min_size=1, max_size=8)
+    # Never let a DB outage (e.g. Supabase auto-pausing an idle free project) crash
+    # startup — every query below already degrades gracefully when _pool is None.
+    try:
+        _pool = await asyncpg.create_pool(url, min_size=1, max_size=8, timeout=15)
+    except Exception as e:
+        print(f"WARNING: Postgres unavailable, starting with db=off: {type(e).__name__}: {e}")
+        _pool = None
     return _pool
 
 

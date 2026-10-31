@@ -17,8 +17,10 @@ Run:
 """
 from __future__ import annotations
 
+import asyncio
 import os
 import sys
+import time
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -160,10 +162,26 @@ async def _run_investigation(investigation_id: str, transaction: dict, account: 
                                   "error": str(e)})
 
 
+_DB_RETRY = {"last": 0.0}
+
+
+async def _reconnect_db() -> None:
+    pool = await db.init_pool()
+    if pool is not None:
+        await auth.bootstrap_analyst(pool)
+        print("Postgres reconnected · db=on")
+
+
 # ── Public routes ─────────────────────────────────────────────────────────
 
 @app.get("/api/health")
 async def health():
+    # If the DB was down at boot, retry in the background (at most once a minute) so the
+    # service recovers on its own once it comes back, without slowing this endpoint down.
+    if (db.get_pool() is None and os.environ.get("DATABASE_URL")
+            and time.monotonic() - _DB_RETRY["last"] > 60):
+        _DB_RETRY["last"] = time.monotonic()
+        asyncio.create_task(_reconnect_db())
     return {"status": "ok", "agent_ready": STATE["graph"] is not None,
             "db": db.get_pool() is not None, "redis": redis_client.get_client() is not None}
 
